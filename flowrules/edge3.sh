@@ -1,5 +1,5 @@
 #This rules are written by PPTLT@NECTEC for SDNIOTEDGE project 
-#@edge3
+#@edge3#
 edge1_control_mac="98:48:27:e2:bf:04"
 edge2_control_mac="98:48:27:e2:c1:00"
 edge3_control_mac="98:48:27:e0:21:2a"
