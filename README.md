@@ -21,7 +21,7 @@ SDNEdge consists of 3 main elements:
 SDNEdge Architecture: 
 
 
-![SDNEdge architecture](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Figure/SADEdge-Architecture.png)
+![SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Architecture.png)
 
 SADEdge network topology: 
 * Here we present an example of SADEdge network topology
