@@ -22,7 +22,7 @@ SDNEdge consists of 3 main elements:
 * Virtual switch : We use [OvS](https://www.openvswitch.org/) as a virtual swich located in an edge computing node. 
 * Wireless mesh ad-hoc network : We form a distributed edge computing (DEC) network with a wireless mesh ad-hoc netowork where edge nodes rely the MQTT messages from IoT devices (i.e., Edge computing nodes) to the IoT gateway (i.e., Super Edge node) and forwords those MQTT messages to the IoT cloud. 
 
-SDNEdge Architecture: 
+SDNEdge Architecture: <br />
 
 
 <!-- ![SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Architecture.png) -->
@@ -30,10 +30,12 @@ SDNEdge Architecture:
   <SDNEdge architecture src="./PlanB/Figure_Readme/SADEdge-Architecture.png" />
 </p>
 
-SADEdge network topology: 
-* Here we present an example of SADEdge network topology
+SADEdge network topology: <br />
+* Here we present an example of SADEdge network topology. <br />
 
-![SDNEdge network topology](./PlanB/Figure_Readme/SADEdge-Architecture.png)
+<p align="center">
+  <SDNEdge architecture src="./PlanB/Figure_Readme/SADEdge-Topology.png" />
+</p>
 
 
 ## Technologies Used
