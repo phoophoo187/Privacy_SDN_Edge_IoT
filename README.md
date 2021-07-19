@@ -8,7 +8,7 @@
 * [Acknowledgements](#acknowledgements)
 * [Project contributors](#Project-contributors)
 * [Contact](#contact)
-* [License](#license) -->
+<!-- * [License](#license) -->
 
 ## General Information
 SADEdge is a part of "Privacy-Preserving as a Service for IoT" project. SADEdge mainly focuses on developing the network management techniques that can imporve the network reliability and efficiency of distributed edge computing for IoT. SDN has been seen a promising tool becasue the SDN framework can simplify the network management and can make the distributed edge computing controlable. <br />
