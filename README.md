@@ -22,7 +22,7 @@
 A distributed edge computing (DEC) network is proposed to overcome the challenges in wireless-mesh IoT in wide area for Industrial IoT. However, DEC itself has no QoS and reliability guarantee due to an inherit distributed manner of wireless mesh ad-hoc network. 
 To improve DEC's reliability and QoS, SDN has been seen a promising tool because the SDN framework can simplify the network management and can make the distributed edge computing controlable. <br />
 
-SDSADEdge consists of 3 main elements: <br />
+SADEdge consists of 3 main elements: <br />
 * SDN controller : We use [Ryu controller](https://github.com/faucetsdn/ryu) as a SDN controller to manage the IoT packet flows. <br />
 * Virtual switch : We use [OvS](https://www.openvswitch.org/) as a virtual switch located in an edge computing node. <br />
 * Wireless mesh ad-hoc network : We form a distributed edge computing (DEC) network with a wireless mesh ad-hoc network where edge nodes rely the MQTT messages from IoT devices (i.e., Edge computing nodes) to the IoT gateway (i.e., Super Edge node) and sends those MQTT messages to the IoT cloud. <br />
@@ -71,9 +71,9 @@ How do we test the maximum throughput of a link between a edge node pairs:
 `iperf3 -u -c 10.0.0.1 -b0 -n 20M -bidir`
 
 How to test a static routing algorithm
-1) Make all Raspberry Pis in ad-hoc mode <br />
+1) Make all Raspberry Pis in the ad-hoc mode <br />
 2) Run `run.sh files` in all Raspberry Pis <br />
-3) After running sh files , pi cant ping each other anymore <br />
+3) After running `sh files` , a Raspberry Pi cannot ping each other anymore <br />
 4) Run [superedge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file in superedge by using  <br />
 `ryu-manager superedge.py` 
 6) Rum ping command again in each Raspberry Pi <br />
