@@ -1,6 +1,6 @@
 # Tawannnnnnnn :)
 # Experiment 1.2a
-# Find maximum throughput by sending packets from Edge1 to Edge2 and Edge1 to Edge2 stimultaneity.
+# Find maximum throughput by sending packets from Edge1 to Edge2 and Edge1 to Edge2 simultaneously.
 # Edge1 perspective (Edge2 send packets to Edge1 server)
 
 -----------------------------------------------------------
