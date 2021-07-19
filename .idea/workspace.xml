@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add more figures">
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/Result_Figure/SADEdge-Topology_1_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add results in README.md">
       <change beforePath="$PROJECT_DIR$/PlanB/Experiment1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment1/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626712462275</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add results in README.md">
+      <created>1626713578414</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1626713578414</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,7 +231,8 @@
     <MESSAGE value="add detail" />
     <MESSAGE value="add more detail" />
     <MESSAGE value="add more figures" />
-    <option name="LAST_COMMIT_MESSAGE" value="add more figures" />
+    <MESSAGE value="add results in README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="add results in README.md" />
   </component>
   <component name="WindowStateProjectService">
     <state x="343" y="-1242" key="#Plot_clean_data" timestamp="1626599882750">
@@ -249,12 +255,12 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="157" y="-1045" key="MultipleFileMergeDialog/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626679689433" />
-    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626712453652">
+    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626713656675">
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626682644861" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626712453652" />
-    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626712026927" />
+    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626713656675" />
     <state x="355" y="-1231" width="744" height="924" key="find.popup" timestamp="1626599678051">
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
