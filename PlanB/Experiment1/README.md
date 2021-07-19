@@ -21,6 +21,6 @@ The maximum throughput of a link between Edge#1 and Edge#2 as shown in Fig.1. Th
 ![Fig.3: Maximum Throughput](./Result_Figure/Maximum_thru_test1_2.png)
 
 
-The jitter of throughput iof a link between Edge#1 and Edge#2 as shown in Fig.2. The average jitter is equal to 0.5936 sec and its variance is equal to 0.0175. <br />
+The jitter of throughput iof a link between Edge#1 and Edge#2 as shown in Fig.2. The average jitter is equal to 1.2076 sec and its variance is equal to 0.594. <br />
 
 ![Fig.4: Jitter](./Result_Figure/Jitter_test_1_2.png)
