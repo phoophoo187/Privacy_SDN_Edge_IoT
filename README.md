@@ -8,7 +8,7 @@
 * [Acknowledgements](#acknowledgements)
 * [Project contributors](#Project-contributors)
 * [Contact](#contact)
-<!-- * [License](#license) -->
+* [License](#license) 
 
 ## General Information
 SADEdge is a part of "Privacy-Preserving as a Service for IoT" project. SADEdge mainly focuses on developing the network management techniques that can imporve the network reliability and efficiency of distributed edge computing for IoT. SDN has been seen a promising tool becasue the SDN framework can simplify the network management and can make the distributed edge computing controlable. <br />
@@ -26,7 +26,7 @@ SDNEdge Architecture:
 SADEdge network topology: 
 * Here we present an example of SADEdge network topology
 
-![SDNEdge network topology](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Figure/SADEdge-Topology.png)
+![SDNEdge network topology](./PlanB/Figure_Readme/SADEdge-Topology.png)
 
 
 ## Technologies Used
@@ -52,7 +52,7 @@ List the ready features here:
 
 
 ## Usage
-How do we test the maximum througput of a link between a edge node pairs
+How do we test the maximum throughput of a link between a edge node pairs
 
 `iperf3 -u -c 10.0.0.1 -b0 -n 20M -bidir`
 
@@ -62,11 +62,30 @@ How to test a static routing algorithm
 3) After running sh files , pi cant ping each other anymore <br />
 4) Run [superedge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file in superedge by using  <br />
 `ryu-manager superedge.py` 
-6) Rum ping commnad again in each Raspberry Pi <br />
+6) Rum ping command again in each Raspberry Pi <br />
 
 
 ## Project Status
-@@ -94,19 +113,19 @@ SADEdge is a part of the Privacy-Preserving as a Service for IoT project was sup
+SADEdge is a part of the Privacy-Preserving as a Service for IoT project was sup
+
+## Room for Improvement
+
+
+## Acknowledgements
+
+
+## Project contributors
+* Kalika Suksomboon <br />
+   * Researcher <br />
+   * CPS (Cyber-Physical Systems) Laboratory, NECTEC, Thailand <br />
+
+* Aimaschana Niruntasukrat <br />
+   * Researcher <br />
+   * CPS (Cyber-Physical Systems) Laboratory, NECTEC, Thailand <br />
+
+* Sophon Mongkolluksamee <br />
+   * Professor <br />
+   * Srinakharinwirot University, Bangkok, Thailand <br />
 
 * Koonlachat Meesublak <br />
    * Researcher <br />
