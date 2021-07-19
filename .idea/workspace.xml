@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add results in README.md">
+      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/.ipynb_checkpoints/Clean_and_plot_Test_1_2-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_plot_Test_1_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlanB/Experiment1/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_Plot.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_Plot.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlanB/Experiment1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment1/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlanB/Experiment1/Result_Figure/Maximum_thru_test1_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment1/Result_Figure/Maximum_thru_test1_1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +214,21 @@
       <option name="project" value="LOCAL" />
       <updated>1626713578414</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="add results in README.md">
+      <created>1626713883927</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1626713883927</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add results in README.md">
+      <created>1626713956304</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1626713956304</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,12 +275,13 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="157" y="-1045" key="MultipleFileMergeDialog/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626679689433" />
-    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626713656675">
-      <screen x="-621" y="-1417" width="2560" height="1417" />
+    <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626715742909">
+      <screen x="-621" y="-1417" width="2560" height="1337" />
     </state>
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626682644861" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626712453652" />
-    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626713656675" />
+    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626713946640" />
+    <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1337@-621.-1417.2560.1337" timestamp="1626715742909" />
     <state x="355" y="-1231" width="744" height="924" key="find.popup" timestamp="1626599678051">
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
