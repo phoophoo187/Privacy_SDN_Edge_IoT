@@ -25,17 +25,13 @@ SDNEdge consists of 3 main elements:
 SDNEdge Architecture: <br />
 
 
-<!-- ![SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Architecture.png) -->
-<p align="center">
-  <SDNEdge architecture src="./PlanB/Figure_Readme/SADEdge-Architecture.png" />
-</p>
+![SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Architecture.png) 
 
 SADEdge network topology: <br />
 * Here we present an example of SADEdge network topology. <br />
 
-<p align="center">
-  <SDNEdge architecture src="./PlanB/Figure_Readme/SADEdge-Topology.png" />
-</p>
+![SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Topology.png) 
+
 
 
 ## Technologies Used
