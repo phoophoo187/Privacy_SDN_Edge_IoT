@@ -15,12 +15,17 @@
 * [License](#license) 
 
 ## General Information
-**SADEdge** is a part of the "Privacy-Preserving as a Service for IoT" project founded by [BTFP of NBTC](https://btfp.nbtc.go.th/) Thailand. SADEdge mainly focuses on developing the network management techniques and network functions that be deployed in a distributed edge computing (DEC) network. SADEdge aims to improve the network reliability and efficiency of distributed edge computing (DEC) in IoT . SDN has been seen a promising tool because the SDN framework can simplify the network management and can make the distributed edge computing controlable. <br />
+**SADEdge** is a part of the "Privacy-Preserving as a Service for IoT" project founded by [BTFP of NBTC](https://btfp.nbtc.go.th/) Thailand. SADEdge mainly focuses on developing the network management techniques and network functions deployed in a distributed edge computing (DEC) network. SADEdge aims to improve the network reliability and efficiency of distributed edge computing (DEC) in IoT. 
 
-SDNEdge consists of 3 main elements: 
-* SDN controller : We use [Ryu controller](https://github.com/faucetsdn/ryu) as a SDN controller to manage the IoT packet flows.
-* Virtual switch : We use [OvS](https://www.openvswitch.org/) as a virtual swich located in an edge computing node. 
-* Wireless mesh ad-hoc network : We form a distributed edge computing (DEC) network with a wireless mesh ad-hoc netowork where edge nodes rely the MQTT messages from IoT devices (i.e., Edge computing nodes) to the IoT gateway (i.e., Super Edge node) and forwords those MQTT messages to the IoT cloud. 
+### Why SDN?
+
+A distributed edge computing (DEC) network is proposed to overcome the challenges in wireless-mesh IoT in wide area for Industrial IoT. However, DEC itself has no QoS and reliability guarantee due to an inherit distributed manner of wireless mesh ad-hoc network. 
+To improve DEC's reliability and QoS, SDN has been seen a promising tool because the SDN framework can simplify the network management and can make the distributed edge computing controlable. <br />
+
+SDSADEdge consists of 3 main elements: <br />
+* SDN controller : We use [Ryu controller](https://github.com/faucetsdn/ryu) as a SDN controller to manage the IoT packet flows. <br />
+* Virtual switch : We use [OvS](https://www.openvswitch.org/) as a virtual switch located in an edge computing node. <br />
+* Wireless mesh ad-hoc network : We form a distributed edge computing (DEC) network with a wireless mesh ad-hoc network where edge nodes rely the MQTT messages from IoT devices (i.e., Edge computing nodes) to the IoT gateway (i.e., Super Edge node) and sends those MQTT messages to the IoT cloud. <br />
 
 SDNEdge Architecture: <br />
 
@@ -49,15 +54,19 @@ List the ready features here:
 - [Static routing](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules)
 - Dynamic routing
 
-
-<!-- If you have screenshots you'd like to share, include them here. -->
-
-
-@@ -51,10 +63,17 @@ Proceed to describe how to install / setup one's local environment / get started
-
+## Setup & Requirements
+* DEC network: 
+    * Edge node: we use Raspberry Pi 3 model B+ and install Raspbian OS (version xxx).
+    * Superedge : we use a PC or laptop and install Ubuntu 20.04.
+    * Antenna : Install driver [rtl8812au](https://github.com/aircrack-ng/rtl8812au).
+* Code : 
+    * Python 3.8 
+    * Shell script 
 
 ## Usage
-How do we test the maximum throughput of a link between a edge node pairs
+
+### How to test the link bandwidth of a DEC network
+How do we test the maximum throughput of a link between a edge node pairs:
 
 `iperf3 -u -c 10.0.0.1 -b0 -n 20M -bidir`
 
@@ -71,13 +80,13 @@ How to test a static routing algorithm
 
 
 ## Project Status
-SADEdge is a part of the Privacy-Preserving as a Service for IoT project was sup
+SADEdge under developing...
 
 ## Room for Improvement
 
 
 ## Acknowledgements
-
+This project is supported by [BTFP of NBTC](https://btfp.nbtc.go.th/) Thailand. 
 
 ## Project contributors
 * Kalika Suksomboon <br />
@@ -110,6 +119,9 @@ SADEdge is a part of the Privacy-Preserving as a Service for IoT project was sup
 
 
 ## Contact
-
+We are committed to open-sourcing our work to support IIoT use cases. We want to know how yoi use this library and what problems it helps you to solve. We have a communication channel for you to contact us:
+* Kalika Suksomboon <br />
+    * The project email: somboonbox.netpie@google.com
+  
 ## License 
 MIT. See [LICENSE](https://github.com/google/fully-homomorphic-encryption/blob/main/LICENSE).
