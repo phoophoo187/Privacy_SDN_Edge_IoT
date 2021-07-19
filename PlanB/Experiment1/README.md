@@ -1,5 +1,4 @@
-Explain the experiment 1
-## Experiment 1: To find the maximum throughput 
+## Experiment 1: Maximum throughput 
 This experiment aims to find the maximum throughput of a link between each edge node pair. 
 For example, the throughput of a link between Edge#1 and Edge#2.  <br />
 
