@@ -76,7 +76,7 @@ How to test a static routing algorithm
 3) After running `sh files` , a Raspberry Pi cannot ping each other anymore <br />
 4) Run [superedge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file in superedge by using  <br />
 `ryu-manager superedge.py` 
-6) Rum `ping` command again in each Raspberry Pi <br />
+6) Run `ping` command again in each Raspberry Pi <br />
 
 
 ## Project Status
