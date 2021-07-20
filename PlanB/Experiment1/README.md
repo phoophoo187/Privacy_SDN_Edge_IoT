@@ -18,6 +18,8 @@ The jitter of throughput iof a link between Edge#1 and Edge#2 as shown in Fig.2.
 ### Experiment 1.2 : Maximum throughput between 2 edge nodes (bidirectional communication).
 This experiment aims to find the maximum throughput of a link between Edge#1 and Edge#2.  <br />
 
+![Edge topology](./Result_Figure/SADEdge-Topology_1_2.png)
+
 #### Results 1.2 : 
 The maximum throughput of a link between Edge#1 and Edge#2 as shown in Fig.1. The average throughput is equal to 16.7302 Mbits/sec and its variance is equal to 8.409.<br />
 
