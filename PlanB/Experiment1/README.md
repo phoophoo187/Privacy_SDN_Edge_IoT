@@ -1,6 +1,8 @@
 ## Experiment 1: Maximum throughput 
-This experiment aims to find the maximum throughput of a link between each edge node pair. 
-For example, the throughput of a link between Edge#1 and Edge#2.  <br />
+This experiment aims to find the maximum throughput of a link between a pair of edge nodes under different scenarios as follows. 
+
+### Experiment 1.1 : Maximum throughput between 2 edge nodes.
+This experiment aims to find the throughput of a link between Edge#1 and Edge#2.  <br />
 
 ![Edge topology](./Result_Figure/SADEdge-Topology_1_1.png)
 
