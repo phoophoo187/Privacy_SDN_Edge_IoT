@@ -4,7 +4,7 @@
 
 * [General Information](#general-information)
 * [Technologies Used](#technologies-used)
-* [Features](#Features (Under testing))
+* [Features](#Features)
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
