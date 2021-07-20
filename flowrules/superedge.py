@@ -55,13 +55,13 @@ data_interface="wlan1"
 superedge_control_interface="wlx000f001491d7"
 superedge_data_interface="wlx000f00101023"
 
-edge1_datapath_id=1152921504606846977
-edge2_datapath_id=1152921504606846978
-edge3_datapath_id=1152921504606846979
-edge4_datapath_id=1152921504606846980
-edge5_datapath_id=1152921504606846981
-edge6_datapath_id=1152921504606846982
-superedge_datapath_id=255421810004811
+#edge1_datapath_id=1152921504606846977
+#edge2_datapath_id=1152921504606846978
+#edge3_datapath_id=1152921504606846979
+#edge4_datapath_id=1152921504606846980
+#edge5_datapath_id=1152921504606846981
+#edge6_datapath_id=1152921504606846982
+#superedge_datapath_id=255421810004811
 
 def getDeviceName(datapath):
     if str(edge1_datapath_id) == datapath:
@@ -285,10 +285,38 @@ class node_failure (app_manager.RyuApp):
             self.logger.info("When the link between edge1 and superedge is down..........")
             if 'edge1->edge2' not in self.link_down and 'edge2->superedge' not in self.link_down:
                 self.logger.info("Redirect with edge1->edge2->superedge")
+				if datapath.id == edge2_datapath_id:
+                match = parser.OFPMatch(in_port=1, eth_type=0x0806, eth_src=edge1_control_mac,arp_tpa=superedge_control_ip)
+                #self.add_gototable(datapath, 0, 3, 160, match, 20) e2 relays from e1 to superedge
+                match = parser.OFPMatch(in_port=1, eth_type=0x0800, eth_src=edge1_control_mac,ipv4_dst=superedge_control_ip)
+                #self.add_gototable(datapath, 0, 3, 160, match, 20) r2 relay from e1 to superedge
+
+                match = parser.OFPMatch(in_port=1, eth_type=0x0806, eth_src=superedge_control_mac,arp_tpa=edge1_control_ip)
+                #self.add_gototable(datapath, 0, 2, 160, match, 20) e2 relays from superedge to e1
+                match = parser.OFPMatch(in_port=1, eth_type=0x0800, eth_src=superedge_control_mac,ipv4_dst=edge1_control_ip)
+                #self.add_gototable(datapath, 0, 2, 160, match, 20) e2 relays from superedge to e1
+
+                if datapath.id == edge1_datapath_id:
+                match = parser.OFPMatch(in_port=local, eth_type=0x0806, eth_src=edge1_control_mac,arp_tpa=superedge_control_ip)
+                #self.add_gototable(datapath, 0, 2, 160, match, 20) e1 goes change route
+
+                match = parser.OFPMatch(in_port=local, eth_type=0x0800, eth_src=edge1_control_mac,ipv4_dst=superedge_control_ip)
+                #self.add_gototable(datapath, 0, 2, 160, match, 20) e1 change route
+				
+				
+				if datapath.id == superedge_datapath_id:
+                match = parser.OFPMatch(in_port=local, eth_type=0x0806, eth_src=superedge_control_mac,arp_tpa=edge1_control_ip)
+                #self.add_gototable(datapath, 0, 2, 160, match, 20) superedge goes change route
+
+                match = parser.OFPMatch(in_port=local, eth_type=0x0800, eth_src=superedge_control_mac,ipv4_dst=edge1_control_ip)
+                #self.add_gototable(datapath, 0, 2, 160, match, 20) e1 change route
+				
             elif 'edge1->edge2' not in self.link_down and 'edge2->edge3' not in self.link_down and 'edge3->superedge' not in self.link_down:
                 self.logger.info("Redirect with edge1->edge2->edge3->superedge")
+				
             elif 'edge1->edge4' not in self.link_down and 'edge4->edge5' not in self.link_down and 'edge5->edge2' not in self.link_down and 'edge2->superedge' not in self.link_down:
                 self.logger.info("Redirect with edge1->edge4->edge5->edge2->superedge")
+				
             else:
                 self.logger.info("All alternative control and data routes between edge 1 and superedge are down")
         if 'edge2->superedge' in self.link_down:
