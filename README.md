@@ -121,8 +121,7 @@ This project is supported by [BTFP of NBTC](https://btfp.nbtc.go.th/) Thailand.
 
 ## Contact
 We are committed to open-sourcing our work to support IIoT use cases. We want to know how yoi use this library and what problems it helps you to solve. We have a communication channel for you to contact us:
-* Kalika Suksomboon <br />
-    * The project email: somboonbox.netpie@google.com
+ * The project email: somboonbox.daisy@google.com
   
 ## License 
 MIT. See [LICENSE](https://github.com/google/fully-homomorphic-encryption/blob/main/LICENSE).

@@ -20,10 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add results in README.md">
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/.ipynb_checkpoints/Clean_and_plot_Test_1_2_2-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_plot_Test_1_2_2.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/test1_1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_Plot.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_Plot.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,12 +332,13 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="157" y="-1045" key="MultipleFileMergeDialog/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626679689433" />
-    <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626750112376">
-      <screen x="-621" y="-1417" width="2560" height="1338" />
+    <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626762622404">
+      <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626682644861" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626712453652" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626713946640" />
+    <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.828/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626762622404" />
     <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1337@-621.-1417.2560.1337" timestamp="1626749433479" />
     <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1338@-621.-1417.2560.1338" timestamp="1626750112376" />
     <state x="355" y="-1231" width="744" height="924" key="find.popup" timestamp="1626599678051">
