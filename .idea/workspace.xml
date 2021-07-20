@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add results in README.md" />
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add results in README.md">
+      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/.ipynb_checkpoints/Clean_and_plot_Test_1_2_2-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_plot_Test_1_2_2.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanB/Experiment1/test1_1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_Plot.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment1/Clean_and_Plot.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -276,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626750119365</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="add results in README.md">
+      <created>1626750983594</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1626750983594</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
