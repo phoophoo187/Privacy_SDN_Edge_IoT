@@ -117,7 +117,11 @@ This project is supported by [BTFP of NBTC](https://btfp.nbtc.go.th/) Thailand.
 * Phoo Phoo Thet Lyar Tun <br />
    * Researche Assistant <br />
    * CPS (Cyber-Physical Systems) Laboratory, NECTEC, Thailand <br />
-
+   
+## Advisorboard 
+* Panita Pongpaibool <br />
+   * Vice Executive Director <br />
+   * NECTEC, Thailand
 
 ## Contact
 We are committed to open-sourcing our work to support IIoT use cases. We want to know how you use our project's code and what problems it helps you to solve. 
