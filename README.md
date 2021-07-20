@@ -71,7 +71,7 @@ How do we test the maximum throughput of a link between a edge node pairs:
 `iperf3 -u -c 10.0.0.1 -b0 -n 20M -bidir`
 
 How to test a static routing algorithm
-1) Make all Raspberry Pis in the ad-hoc mode <br />
+1) Let all Raspberry Pis work in an Ad-Hoc network mode [Ref](https://classes.engineering.wustl.edu/ese205/core/index.php?title=Ad-Hoc_Network_%2B_Raspberry_Pi)<br />
 2) Run `run.sh files` in all Raspberry Pis <br />
 3) After running `sh files` , a Raspberry Pi cannot ping each other anymore <br />
 4) Run [superedge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file in superedge by using  <br />
@@ -81,7 +81,7 @@ How to test a static routing algorithm
 
 ## Project Status
 SADEdge is under developing...
-We keep our progress as fast as possible :-P
+We keep our progress as fast as possible :-)
 
 ## Room for Improvement
 
