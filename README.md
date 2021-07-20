@@ -19,8 +19,9 @@
 
 ### Why SDN?
 
-A distributed edge computing (DEC) network is proposed to overcome the challenges in wireless-mesh IoT in wide area for Industrial IoT. However, DEC itself has no QoS and reliability guarantee due to an inherit distributed manner of wireless mesh ad-hoc network. 
-To improve DEC's reliability and QoS, SDN has been seen a promising tool because the SDN framework can simplify the network management and can make the distributed edge computing controlable. <br />
+A distributed edge computing (DEC) network is proposed to overcome the challenges in wireless-mesh IoT in wide area for Industrial IoT (IIoT). 
+However, DEC itself has no QoS and reliability guarantee due to an inherit distributed manner of a wireless mesh ad-hoc network. 
+To improve DEC's reliability and QoS, SDN has been seen as a promising tool because the SDN framework can simplify the network management and can make the distributed edge computing controlable. <br />
 
 SADEdge consists of 3 main elements: <br />
 * SDN controller : We use [Ryu controller](https://github.com/faucetsdn/ryu) as a SDN controller to manage the IoT packet flows. <br />
