@@ -120,7 +120,8 @@ This project is supported by [BTFP of NBTC](https://btfp.nbtc.go.th/) Thailand.
 
 
 ## Contact
-We are committed to open-sourcing our work to support IIoT use cases. We want to know how yoi use this library and what problems it helps you to solve. We have a communication channel for you to contact us:
+We are committed to open-sourcing our work to support IIoT use cases. We want to know how you use our project's code and what problems it helps you to solve. 
+We have a communication channel for you to contact us:
  * The project email: somboonbox.daisy@google.com
   
 ## License 
