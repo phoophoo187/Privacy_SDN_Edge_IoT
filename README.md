@@ -44,7 +44,7 @@ SADEdge network topology: <br />
 - [OvS](https://www.openvswitch.org/download/)
 - [MQTT broker](https://www.hivemq.com/blog/mqtt-toolbox-mqttbox/)
 - Raspberry Pi 3 model B+ with Raspbian OS
-- Wireless antenna, i.e., one which is compatible with Raspberry Pi 3 model B+ is [TP-Link](https://www.tp-link.com/th/home-networking/adapter/archer-t2u-plus/) and its driver can be downloaded from [rtl8812au](https://github.com/aircrack-ng/rtl8812au) which supports the USB id your wifi adapters use.  For the Raspbian OS and they are available to download from [wifi-driver](http://downloads.fars-robotics.net/wifi-drivers/).
+- Wireless antenna : one which is compatible with Raspberry Pi 3 model B+ is [TP-Link](https://www.tp-link.com/th/home-networking/adapter/archer-t2u-plus/), and its driver can be downloaded from [rtl8812au](https://github.com/aircrack-ng/rtl8812au).  For the Raspbian OS and they are available to download from [wifi-driver](http://downloads.fars-robotics.net/wifi-drivers/).
 
 
 ## Features (Under testing)
@@ -70,7 +70,7 @@ How do we test the maximum throughput of a link between a edge node pairs:
 
 `iperf3 -u -c 10.0.0.1 -b0 -n 20M -bidir`
 
-How to test a static routing algorithm
+How to test a static routing algorithm for wireless-mesh ad-hoc network: <br />
 1) Let all Raspberry Pis work in an Ad-Hoc network mode [Ref](https://classes.engineering.wustl.edu/ese205/core/index.php?title=Ad-Hoc_Network_%2B_Raspberry_Pi)<br />
 2) Run `run.sh files` in all Raspberry Pis <br />
 3) After running `sh files` , a Raspberry Pi cannot ping each other anymore <br />
