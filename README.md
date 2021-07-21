@@ -79,7 +79,7 @@ How to test a static routing algorithm for wireless-mesh ad-hoc network: <br />
     * Run [edge3.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge3.sh) in Raspberry Pis for Edge#4 <br />
     * Run [edge4.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge4.sh) in Raspberry Pis for Edge#4 <br />
     * Run [edge5.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge5.sh) in Raspberry Pis for Edge#5 <br />
-    * Run [edge6.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge6.sh) in Raspberry Pis for Edge#4 <br />
+    * Run [edge6.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge6.sh) in Raspberry Pis for Edge#6 <br />
 3) After running `sh files` , a Raspberry Pi cannot ping each other anymore <br />
 4) Run [superedge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file in superedge by using  <br />
 `ryu-manager superedge.py` 
