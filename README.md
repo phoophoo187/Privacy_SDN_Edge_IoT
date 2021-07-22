@@ -45,15 +45,17 @@ SADEdge network topology: <br />
 - [OvS](https://www.openvswitch.org/download/)
 - [MQTT broker](https://www.hivemq.com/blog/mqtt-toolbox-mqttbox/)
 - Raspberry Pi 3 model B+ with Raspbian OS
-- Wireless antenna : one which is compatible with Raspberry Pi 3 model B+ is [TP-Link](https://www.tp-link.com/th/home-networking/adapter/archer-t2u-plus/), and its driver can be downloaded from [rtl8812au](https://github.com/aircrack-ng/rtl8812au).  For the Raspbian OS and they are available to download from [wifi-driver](http://downloads.fars-robotics.net/wifi-drivers/).
+- Wireless antenna : one which is compatible with Raspberry Pi 3 model B+ is [TP-Link](https://www.tp-link.com/th/home-networking/adapter/archer-t2u-plus/), and its driver can be downloaded from [rtl8812au](https://github.com/aircrack-ng/rtl8812au).  
+For the Raspbian OS, the drivers are available to download from [wifi-driver](http://downloads.fars-robotics.net/wifi-drivers/).
 
 
-## Features (Under testing)
+## Features 
 List the ready features here:
 - Wireless ad-hoc mode
 - [Maximum Throughput](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/PlanB) 
 - [Static routing](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules)
 - Dynamic routing
+- [Mininet-Wifi](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/Testing%20on%20Mininet-wifi)
 
 ## Setup & Requirements
 * DEC network: 
@@ -65,6 +67,7 @@ List the ready features here:
     * Shell script 
 
 ## Usage
+xxx
 
 ### How to test the link bandwidth of a DEC network
 How do we test the maximum throughput of a link between a edge node pairs:
