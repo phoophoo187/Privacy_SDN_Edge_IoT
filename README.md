@@ -5,7 +5,7 @@
 * [General Information](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#Features)
-* [Setup & Requirements](#setup-&-requirements)
+* [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
@@ -57,7 +57,7 @@ List the ready features here:
 - Dynamic routing
 - [Mininet-Wifi](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/Testing%20on%20Mininet-wifi)
 
-## Setup & Requirements
+## Setup
 * DEC network: 
     * Edge node: we use Raspberry Pi 3 model B+ and install Raspbian OS (version xxx).
     * Superedge : we use a PC or laptop and install Ubuntu 20.04.

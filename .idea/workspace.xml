@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="revise main README.md">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -356,7 +355,28 @@
       <option name="project" value="LOCAL" />
       <updated>1626843205930</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="revise main README.md">
+      <created>1626928900646</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1626928900646</updated>
+    </task>
+    <task id="LOCAL-00040" summary="revise main README.md">
+      <created>1626929017648</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1626929017648</updated>
+    </task>
+    <task id="LOCAL-00041" summary="revise main README.md">
+      <created>1626929140641</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1626929140641</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -405,13 +425,14 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="157" y="-1045" key="MultipleFileMergeDialog/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626679689433" />
-    <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626843199061">
-      <screen x="-621" y="-1417" width="2560" height="1338" />
+    <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626929217103">
+      <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626682644861" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626712453652" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626713946640" />
     <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.828/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626762622404" />
+    <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.832/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626929217103" />
     <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1337@-621.-1417.2560.1337" timestamp="1626749433479" />
     <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1338@-621.-1417.2560.1338" timestamp="1626843199061" />
     <state x="345" y="-887" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1340@-621.-1417.2560.1340" timestamp="1626795880076" />
