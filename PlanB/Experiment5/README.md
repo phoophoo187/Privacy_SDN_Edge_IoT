@@ -1,4 +1,4 @@
-# Experiment 5: The effect of distance between 2 edge nodes to the maximum throughput 
+# Experiment 5: The effect of the distance between 2 edge nodes to the maximum throughput 
 
 This experiment aims to find the maximum throughput of a link between a pair of edge nodes under different scenarios as follows. 
 
