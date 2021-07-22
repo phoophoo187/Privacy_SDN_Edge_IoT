@@ -5,7 +5,7 @@
 * [General Information](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#Features)
-* [Setup & Requirements](#setup&requirements)
+* [Setup & Requirements](#setup-&-requirements)
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
