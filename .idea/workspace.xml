@@ -5,26 +5,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="README.md in experiment 5">
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/.ipynb_checkpoints/Clean_data_experiment_5_1000cm-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/.ipynb_checkpoints/Clean_data_experiment_5_200cm-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/.ipynb_checkpoints/Clean_data_experiment_5_300cm-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/.ipynb_checkpoints/Clean_data_experiment_5_400cm-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/.ipynb_checkpoints/Clean_data_experiment_5_500cm-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/.ipynb_checkpoints/Clean_data_experiment_5_750cm-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_1000cm.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_200cm.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_300cm.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_400cm.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_500cm.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_750cm.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/test5_200cm.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/test5_300cm.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/test5_400cm.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/test5_500cm.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlanB/Experiment5/test5_750cm.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_100cm.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment5/Clean_data_experiment_5_100cm.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlanB/Experiment5/test5_100cm.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/Experiment5/test5_100cm.csv" afterDir="false" />
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/PlanB/Experiment2/.ipynb_checkpoints/Clean_data_ex2-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlanB/Experiment2/Clean_data_ex2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +392,21 @@
       <option name="project" value="LOCAL" />
       <updated>1626974195974</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Update workspace.xml">
+      <created>1627124941745</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1627124941745</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Update workspace.xml">
+      <created>1627125101431</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1627125101431</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -435,7 +433,9 @@
     <MESSAGE value="add main README.md" />
     <MESSAGE value="revise main README.md" />
     <MESSAGE value="README.md in experiment 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md in experiment 5" />
+    <MESSAGE value="experiment 5" />
+    <MESSAGE value="Update workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml" />
   </component>
   <component name="WindowStateProjectService">
     <state x="343" y="-1242" key="#Plot_clean_data" timestamp="1626599882750">
