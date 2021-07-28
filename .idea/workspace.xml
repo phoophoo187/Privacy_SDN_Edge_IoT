@@ -5,10 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reference_paper/A Game-Theoretical Approach for Task Offloading in Edge Computing.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Reference_paper/A Game-Theoretical Approach for Task Offloading in Edge Computing.pdf" afterDir="false" />
-    </list>
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="Update workspace.xml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -405,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627125101431</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Update workspace.xml">
+      <created>1627466794333</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1627466794333</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
