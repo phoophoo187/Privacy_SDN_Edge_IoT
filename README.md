@@ -15,8 +15,9 @@
 * [License](#license) 
 
 ## Team Rules
-1. *Adequate performance gets a generous severance pagkage*
+1. *Adequate performance gets a generous severance pagkage* <br />
 2. *Honesty Always*
+3. *No excuse for any delay* 
 
 ## General Information
 **SADEdge** is a part of the "Privacy-Preserving as a Service for IoT" project founded by [BTFP of NBTC](https://btfp.nbtc.go.th/) Thailand. SADEdge mainly focuses on developing the network management techniques and network functions deployed in a distributed edge computing (DEC) network. SADEdge aims to improve the network reliability and efficiency of distributed edge computing (DEC) in IoT. 
