@@ -1,7 +1,7 @@
 
 # SADEdge: SDN Assisted Distributed Edge Computing for Privacy Preservation in IoT
 
-* [Team's Rules] (#team-rules)
+* [Team Rules](#team-rules)
 * [General Information](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#Features)
