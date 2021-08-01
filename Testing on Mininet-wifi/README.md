@@ -14,3 +14,6 @@ https://ryu.readthedocs.io/en/latest/getting_started.html
 5> Then, xterm h1 ( which is the host that the Ryu controller runs on ).
 
 6> On h1, run the Ryu controller code , RyuProgram@SuperEdge@Mininet-wifi.py 
+
+Note***
+Run all programs with python3
