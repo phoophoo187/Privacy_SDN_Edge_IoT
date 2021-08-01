@@ -1,4 +1,4 @@
-Instructions to run SDNIoTProject on Mininet-wifi
+Instructions to run SDNIoTEdgeProject on Mininet-wifi
 -------------------------------------------------
 
 1> Install mininet-wifi 
