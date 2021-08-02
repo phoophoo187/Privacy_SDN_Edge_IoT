@@ -15,7 +15,13 @@
  
  ![SDNEdge architecture](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanB/Figure_Readme/SADEdge-Topology.png) 
  
-* In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE. 
+* In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE.
+* The main static path is the shortest path from all edge nodes to the super edge node (SE). We use the minimum hopcount as a link cost. 
+* The pre-planed backup paths are shown in the figure below. 
+
+ ![preplan-paths]()
+
+
 ### Manual setup
 1. Set all edge nodes in the ad-hoc mode for the control plane and data plane. The setting of ad-hoc mode is written in all edge node in
     `/etc/network/interfaces/` <br/>
