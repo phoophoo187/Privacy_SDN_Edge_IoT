@@ -18,7 +18,7 @@ This instructions show how to test static routing.
 ### Manual setup
 1. Set all edge nodes in the ad-hoc mode for the control plane and data plane. The setting of ad-hoc mode is written in all edge node in
     `/etc/network/interfaces/` <br/>
-2. Check the connectivity of all edge nodes and the super edge node with`ping` command for both control plane and data plane. The expected result after running `ping` command is all edge and super edge nodes can ping to each other.
+2. Check the connectivity of all edge nodes and the super edge node with`ping` command for both control plane and data plane. The expected result after running `ping` command is all edge nodes and super edge nodes can ping to each other.
 
 3. Copy shell script `edge1.sh` file to Edge\#1, and change 1 to 2,...,6 for Edge\#2, Edge\#2,...,Edge\#6, respectively.
 
