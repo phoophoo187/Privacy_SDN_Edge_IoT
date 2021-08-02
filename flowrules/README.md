@@ -17,7 +17,7 @@
  
 * In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE.
 * The main static path is the shortest path from all edge nodes to the super edge node (SE). We use the minimum hopcounts as a link cost. 
-* The pre-planned backup paths are shown in the figure below. <br/>
+* The pre-planned backup paths with link failure occur on the main path. <br/>
 
 
  - The main path and the pre-planned backup paths from Edge\#1 to SE : <br/>
