@@ -44,4 +44,4 @@ Do the same thing to all edge nodes. After running `edge*.sh` file, check the co
 `sudo ovs-ofctl dump-flows br0`  for the control plane, and
 `sudo ovs-ofctl dump-flows br1` for the data plane
 
-11. Do the ping tests again. In this step, ping tests will be successful.
+11. Do the ping tests again. In this step, the ping tests will be successful.
