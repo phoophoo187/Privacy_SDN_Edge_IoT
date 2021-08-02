@@ -456,6 +456,10 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="343" y="-1242" key="#Plot_clean_data/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626599882750" />
+    <state x="100" y="123" width="1224" height="582" key="DiffContextDialog" timestamp="1627910073358">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state x="100" y="123" width="1224" height="582" key="DiffContextDialog/0.23.1440.828/-621.-1417.2560.1417@0.23.1440.828" timestamp="1627910073358" />
     <state x="548" y="-1085" key="EnvironmentVariablesDialog" timestamp="1626599881078">
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
@@ -472,14 +476,15 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="157" y="-1045" key="MultipleFileMergeDialog/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626679689433" />
-    <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627467628302">
-      <screen x="-621" y="-1417" width="2560" height="1417" />
+    <state x="543" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627910022508">
+      <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.823/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1627467628302" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1627467246247" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626712453652" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626713946640" />
     <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.828/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626762622404" />
+    <state x="543" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.828/-621.-1417.2560.1417@0.23.1440.828" timestamp="1627910022508" />
     <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.832/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626929217103" />
     <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.833/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626974183419" />
     <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1337@-621.-1417.2560.1337" timestamp="1626749433479" />
