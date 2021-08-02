@@ -18,8 +18,11 @@
 * In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE.
 * The main static path is the shortest path from all edge nodes to the super edge node (SE). We use the minimum hopcounts as a link cost. 
 * The pre-planned backup paths are shown in the figure below. 
-
+ * The main path and the pre-planned paths from Edge\#1 to SE : 
  ![preplan-paths of Edge\#1 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge1_SE.png)
+ * The main path and the pre-planned paths from Edge\#2 to SE :
+ ![preplan-paths of Edge\#1 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge2_SE.png)
+
 
 
 ### Manual Setup 
