@@ -23,7 +23,7 @@ This instructions show how to test static routing.
 3. Copy shell script `edge1.sh` file to Edge\#1, and change 1 to 2,...,6 for Edge\#2, Edge\#2,...,Edge\#6, respectively.
 
 4. Set execute permission on script file`edge*.sh` by using command : <br/>
-`sudo chmod +x edge1.sh` <br/>
+`sudo chmod +x edge*.sh` <br/>
 
 5. Run script `edge1.sh` by command: 
 `sudo ./edge1.sh`
