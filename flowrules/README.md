@@ -36,3 +36,4 @@ Do for all edge nodes. Executing this `edge*.sh` script makes the edge* connects
 `sudo ovs-ofctl dump-flows br0`  for the control plane, and
 `sudo ovs-ofctl dump-flows br1` for the data plane
 
+8. Check the connectivity with 'ping' command again for both control plane and data plane as in Step 2. By this time, the edge nodes and the super node cannot ping to each other because the network interfaces are under the OVS bridge. Hence, OVS needs the flowrules and commands from Ryu controller to set the route. 
