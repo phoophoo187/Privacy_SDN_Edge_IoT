@@ -9,9 +9,13 @@ This instructions show how to test static routing.
 7)	After getting the datapath-id of each edge, copy those datapath-id and paste at the datapath-id variables defined in the superedge.sh. 
 8)	Run superedge.sh in superedge.
 
-## How to run a static routing with the preplaned re-routing scheme.
+## How to run a static routing with the preplaned re-routing scheme
 * The network topology is used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
  
  ![SDNEdge architecture](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanB/Figure_Readme/SADEdge-Topology.png) 
  
- In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE.
+* In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE. 
+### Manual setup
+1. Set all edge nodes in the ad-hoc mode for control plane and data plane. The setting of ad-hoc mode is written in all edge node in
+    `/etc/network/interfaces/`
+2. 

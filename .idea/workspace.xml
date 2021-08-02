@@ -76,20 +76,6 @@
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
     </task>
-    <task id="LOCAL-00006" summary="update readme.md add title">
-      <created>1626691697877</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1626691697877</updated>
-    </task>
-    <task id="LOCAL-00007" summary="add figure2">
-      <created>1626691901291</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1626691901291</updated>
-    </task>
     <task id="LOCAL-00008" summary="add figure2">
       <created>1626691987467</created>
       <option name="number" value="00008" />
@@ -419,7 +405,21 @@
       <option name="project" value="LOCAL" />
       <updated>1627910327962</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Rewrite instruction">
+      <created>1627910709716</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1627910709716</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Rewrite instruction">
+      <created>1627910787018</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1627910787018</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -477,7 +477,7 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="157" y="-1045" key="MultipleFileMergeDialog/0.23.1440.825/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626679689433" />
-    <state x="543" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627910305864">
+    <state x="543" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627911402630">
       <screen x="0" y="23" width="1440" height="828" />
     </state>
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.823/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1627467628302" />
@@ -485,7 +485,7 @@
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.826/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626712453652" />
     <state x="345" y="-856" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626713946640" />
     <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.828/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626762622404" />
-    <state x="543" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.828/-621.-1417.2560.1417@0.23.1440.828" timestamp="1627910305864" />
+    <state x="543" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.828/-621.-1417.2560.1417@0.23.1440.828" timestamp="1627911402630" />
     <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.832/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626929217103" />
     <state x="345" y="-857" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.833/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626974183419" />
     <state x="345" y="-888" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-621.-1417.2560.1337@-621.-1417.2560.1337" timestamp="1626749433479" />
@@ -495,5 +495,9 @@
       <screen x="-621" y="-1417" width="2560" height="1417" />
     </state>
     <state x="355" y="-1231" width="744" height="924" key="find.popup/0.23.1440.827/-621.-1417.2560.1417@-621.-1417.2560.1417" timestamp="1626599678051" />
+    <state x="293" y="23" width="838" height="1032" key="search.everywhere.popup" timestamp="1627910633484">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state x="293" y="23" width="838" height="1032" key="search.everywhere.popup/0.23.1440.828/-621.-1417.2560.1417@0.23.1440.828" timestamp="1627910633484" />
   </component>
 </project>
