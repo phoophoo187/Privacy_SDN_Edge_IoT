@@ -1,4 +1,4 @@
-This instructions show how to test static routing.
+<!--- This instructions show how to test static routing.
 
 1)	Set every edge in ad-hoc mode for both control plane and data plane. The ad-hoc setting is written at /etc/network/interfaces in every edge.
 2)	Check ping test for both control plane and data plane.
@@ -8,7 +8,8 @@ This instructions show how to test static routing.
 6)	After getting the datapath-id of each edge, copy those datapath-id and paste at the datapath-id variables defined in the superedge.sh. 
 7)	Run superedge.py in superedge by using the command 'ryu-manager superedge.py'
 8)	Check the connectivity between ovs in every edge* and Ryu controller by using the command, sudo ovs-vsctl show. If the status is connected, check the Openflow rules are installed in ovs of the edge* by using the command, sudo ovs-ofctl dump-flows br# . ( # is 0 and 1, 0 is for control plane and 1 is for data plane)
-9)	Do ping tests again that did in step2. In this step, ping tests will be successful.
+9)	Do ping tests again that did in step2. In this step, ping tests will be successful. --->
+
 ## How to run a static routing with the preplaned re-routing scheme
 * The network topology is used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
  
