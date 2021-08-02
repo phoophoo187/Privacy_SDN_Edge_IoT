@@ -5,8 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="Team rules">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="Rewrite instruction">
       <change beforePath="$PROJECT_DIR$/flowrules/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/flowrules/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,20 +74,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
-    </task>
-    <task id="LOCAL-00003" summary="update readme.md add figure">
-      <created>1626689364246</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1626689364246</updated>
-    </task>
-    <task id="LOCAL-00004" summary="update readme.md add figure">
-      <created>1626691328894</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1626691328894</updated>
     </task>
     <task id="LOCAL-00005" summary="update readme.md add title">
       <created>1626691426860</created>
@@ -419,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1627467657857</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Rewrite instruction">
+      <created>1627910067788</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1627910067789</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Rewrite instruction">
+      <created>1627910198070</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1627910198070</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -449,7 +448,8 @@
     <MESSAGE value="experiment 5" />
     <MESSAGE value="Update workspace.xml" />
     <MESSAGE value="Team rules" />
-    <option name="LAST_COMMIT_MESSAGE" value="Team rules" />
+    <MESSAGE value="Rewrite instruction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrite instruction" />
   </component>
   <component name="WindowStateProjectService">
     <state x="343" y="-1242" key="#Plot_clean_data" timestamp="1626599882750">
