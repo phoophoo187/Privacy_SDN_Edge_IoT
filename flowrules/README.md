@@ -35,7 +35,7 @@ After running `edge*.sh` file, check the connectivity with `ping` command again 
 
 7. Copy python program [`superedge.py`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file to the super edge node to run the Ryu controller.
 
-8. Then, use the command 'ryu-manager superedge.py' to run the Ryu controller in super edge.
+8. Then, use the command `ryu-manager superedge.py` to run the Ryu controller in super edge.
 
 9. Check the connectivity between OVS in all edge nodes and Ryu controller by command: <br/>
 `sudo ovs-vsctl show`
