@@ -33,5 +33,6 @@ Do for all edge nodes. Executing this `edge*.sh` script makes the edge* connects
 `sudo ovs-vsctl show`
 
 7. If the status is "connecting", then check whether the OpenFlow rules have been installed in ovs of all edge node or not by command: <br />
-`sudo ovs-ofctl dump-flows br#`
+`sudo ovs-ofctl dump-flows br0`  for the control plane, and
+`sudo ovs-ofctl dump-flows br1` for the data plane
 
