@@ -18,4 +18,4 @@ This instructions show how to test static routing.
 ### Manual setup
 1. Set all edge nodes in the ad-hoc mode for control plane and data plane. The setting of ad-hoc mode is written in all edge node in
     `/etc/network/interfaces/`
-2. 
+2. Check `ping` test for both control plane and data plane.
