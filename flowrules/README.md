@@ -17,19 +17,19 @@ This instructions show how to test static routing.
 * In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE. 
 ### Manual setup
 1. Set all edge nodes in the ad-hoc mode for control plane and data plane. The setting of ad-hoc mode is written in all edge node in
-    `/etc/network/interfaces/`
+    `/etc/network/interfaces/` <\br>
 2. Check the connectivity of all edge nodes and the super edge node with`ping` command for both control plane and data plane. The expected result after run `ping` command is all edge and super edge nodes can ping to each other.
 
 3. Copy shell script `edge1.sh` file to Edge\#1, and change 1 to 2,...,6 for Edge\#2, Edge\#2,...,Edge\#6, respectively.
 
-4. Set execute permission on script file`edge*.sh` by using command :
-`sudo chmod +x edge1.sh`
+4. Set execute permission on script file`edge*.sh` by using command : <br/>
+`sudo chmod +x edge1.sh` <\br>
 
 5. Run script `edge1.sh` by command: 
 `sudo ./edge1.sh`
 Do for all edge nodes. Executing this `edge*.sh` script makes the edge* connects to the Ryu controller in the super edge node. 
 
-6. Check the connectivity between OVS in all edge nodes and Ryu controller by command:
+6. Check the connectivity between OVS in all edge nodes and Ryu controller by command: <br/>
 `sudo ovs-ofctl dump-flow br#`
 
 7. 
