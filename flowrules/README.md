@@ -7,7 +7,7 @@ This instructions show how to test static routing.
 5)	Check ping test again for both control plane and data plane. In this step, it won’t be successful because all the network interfaces are now under the ovs bridge. The ovs needs flowrules and commands from Ryu controller to set the route.
 6)	Before running superedge.sh in superedge to set up the Ryu controller, run the openflow state change handler (https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-ofp-event-eventofpstatechange) in superedge to get the datapath-id of each edge.
 7)	After getting the datapath-id of each edge, copy those datapath-id and paste at the datapath-id variables defined in the superedge.sh. 
-8)	Run superedge.sh in superedge.
+8)	Run superedge.py in superedge.
 
 ## How to run a static routing with the preplaned re-routing scheme
 * The network topology is used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
@@ -27,29 +27,19 @@ This instructions show how to test static routing.
 
 5. Run script `edge1.sh` by command: 
 `sudo ./edge1.sh`
-Do for all edge nodes. Executing this `edge*.sh` script makes the edge* connects to the Ryu controller in the super edge node. 
+Do for all edge nodes. After running 'edge1.sh' file, do ping test again as did in step2. In this step, ping tests wont be successful anymore.  By this time, the edge nodes and the super node cannot ping to each other because the network interfaces are under the OVS bridge. Hence, OVS needs the flowrules and commands from Ryu controller to set the route. 
 
-6. Check the connectivity between OVS in all edge nodes and Ryu controller by command: <br/>
+6. Run the [OpenFlow state change handler](https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-ofp-event-eventofpstatechange) in the super edge node to get the "datapath-id" of each edge. 
+
+7. Copy python program `superedge.py` file to the super edge node to run the Ryu controller.
+
+8. Then, use the command 'ryu-manager superedge.py' to run the Ryu controller in super edge.
+
+9. Check the connectivity between OVS in all edge nodes and Ryu controller by command: <br/>
 `sudo ovs-vsctl show`
 
-7. If the status is "connecting", then check whether the OpenFlow rules have been installed in ovs of all edge node or not by command: <br />
+10. If the status is "connected", then check whether the OpenFlow rules have been installed in ovs of all edge node or not by command: <br />
 `sudo ovs-ofctl dump-flows br0`  for the control plane, and
 `sudo ovs-ofctl dump-flows br1` for the data plane
 
-8. Check the connectivity with `ping` command again for both control plane and data plane as in Step 2. By this time, the edge nodes and the super node cannot ping to each other because the network interfaces are under the OVS bridge. Hence, OVS needs the flowrules and commands from Ryu controller to set the route. 
-
-9. Run the [OpenFlow state change handler](https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-ofp-event-eventofpstatechange) in the super edge node to get the "datapath-id" of each edge. 
-
-10. Copy shell script `superedge.sh` file to the super edge node. 
-
-11. Set execute permission on script file`superedge.sh` by using command : <br/>
-`sudo chmod +x superedge.sh` <br/>
-
-12. Run script `superedge.sh` in the super edge node to setup the Ryu Controller by command:
-
-13. After getting the "dataoath-id" of all edges, copy them and paste them at [`line 58`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/d61178352c897359d9477f5d834ae39588311aed/flowrules/superedge.py#L58) in the script `superedge.sh`.
-
-14. Execute script `superedge.sh` in the super edge node by command: <br/>
-`sudo ./superedge.sh`
-
-  
+11. Do ping tests again. In this step, ping tests will be successful.
