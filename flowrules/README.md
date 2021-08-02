@@ -25,9 +25,11 @@ This instructions show how to test static routing.
 4. Set execute permission on script file`edge*.sh` by using command : <br/>
 `sudo chmod +x edge*.sh` <br/>
 
-5. Run script `edge1.sh` by command: 
-`sudo ./edge1.sh`
-Do for all edge nodes. After running 'edge1.sh' file, do ping test again as did in step2. In this step, ping tests wont be successful anymore.  By this time, the edge nodes and the super node cannot ping to each other because the network interfaces are under the OVS bridge. Hence, OVS needs the flowrules and commands from Ryu controller to set the route. 
+5. Run script `edge*.sh` by command:  <br/>
+`sudo ./edge*.sh` <br/>.
+Do the same thing to all edge nodes. 
+
+After running `edge*.sh` file, check the connectivity with `ping` command again as in step2. In this step, ping tests will not success. You should get a reply in the Command Prompt `Destination host unreachable`. By this time, the edge nodes and the super node cannot ping to each other because the network interfaces are under the OVS bridge. Hence, OVS needs the flowrules and commands from Ryu controller to set the route. 
 
 6. Run the [OpenFlow state change handler](https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-ofp-event-eventofpstatechange) in the super edge node to get the "datapath-id" of each edge. 
 
