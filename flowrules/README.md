@@ -36,4 +36,20 @@ Do for all edge nodes. Executing this `edge*.sh` script makes the edge* connects
 `sudo ovs-ofctl dump-flows br0`  for the control plane, and
 `sudo ovs-ofctl dump-flows br1` for the data plane
 
-8. Check the connectivity with 'ping' command again for both control plane and data plane as in Step 2. By this time, the edge nodes and the super node cannot ping to each other because the network interfaces are under the OVS bridge. Hence, OVS needs the flowrules and commands from Ryu controller to set the route. 
+8. Check the connectivity with `ping` command again for both control plane and data plane as in Step 2. By this time, the edge nodes and the super node cannot ping to each other because the network interfaces are under the OVS bridge. Hence, OVS needs the flowrules and commands from Ryu controller to set the route. 
+
+9. Run the [OpenFlow state change handler](https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-ofp-event-eventofpstatechange) in the super edge node to get the "datapath-id" of each edge. 
+
+10. Copy shell script `superedge.sh` file to the super edge node. 
+
+11. Set execute permission on script file`superedge.sh` by using command : <br/>
+`sudo chmod +x superedge.sh` <br/>
+
+12. Run script `superedge.sh` in the super edge node to setup the Ryu Controller by command:
+
+13. After getting the "dataoath-id" of all edges, copy them and paste them at `line xx` in the script `superedge.sh`.
+
+14. Execute script `superedge.sh` in the super edge node by command: <br/>
+`sudo ./superedge.sh`
+
+  
