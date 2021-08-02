@@ -25,5 +25,11 @@ This instructions show how to test static routing.
 4. Set execute permission on script file`edge*.sh` by using command :
 `sudo chmod +x edge1.sh`
 
-5. To run script `edge1.sh` by command: 
+5. Run script `edge1.sh` by command: 
 `sudo ./edge1.sh`
+Do for all edge nodes. Executing this `edge*.sh` script makes the edge* connects to the Ryu controller in the super edge node. 
+
+6. Check the connectivity between OVS in all edge nodes and Ryu controller by command:
+`sudo ovs-ofctl dump-flow br#`
+
+7. 
