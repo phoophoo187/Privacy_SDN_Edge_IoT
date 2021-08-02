@@ -47,7 +47,7 @@ Do for all edge nodes. Executing this `edge*.sh` script makes the edge* connects
 
 12. Run script `superedge.sh` in the super edge node to setup the Ryu Controller by command:
 
-13. After getting the "dataoath-id" of all edges, copy them and paste them at [`line 58-64`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/d61178352c897359d9477f5d834ae39588311aed/flowrules/superedge.py#L58) in the script `superedge.sh`.
+13. After getting the "dataoath-id" of all edges, copy them and paste them at [`line 58`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/d61178352c897359d9477f5d834ae39588311aed/flowrules/superedge.py#L58) in the script `superedge.sh`.
 
 14. Execute script `superedge.sh` in the super edge node by command: <br/>
 `sudo ./superedge.sh`
