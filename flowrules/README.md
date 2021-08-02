@@ -8,3 +8,7 @@ This instructions show how to test static routing.
 6)	Before running superedge.sh in superedge to set up the Ryu controller, run the openflow state change handler (https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-ofp-event-eventofpstatechange) in superedge to get the datapath-id of each edge.
 7)	After getting the datapath-id of each edge, copy those datapath-id and paste at the datapath-id variables defined in the superedge.sh. 
 8)	Run superedge.sh in superedge.
+
+## How to run a static routing with preplaned re-routing scheme.
+* The network topology is used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
+ [SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Architecture.png) 
