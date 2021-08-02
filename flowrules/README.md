@@ -31,7 +31,7 @@ Do the same thing to all edge nodes. After running `edge*.sh` file, check the co
 
 6. Run the [OpenFlow state change handler](https://ryu.readthedocs.io/en/latest/ryu_app_api.html#ryu-controller-ofp-event-eventofpstatechange) in the super edge node to get the "datapath-id" of each edge. 
 
-7. Copy python program [`superedge.py`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file to the super edge node to run the Ryu controller. After getting the "dataoath-id" of all edges, copy them and paste them at [`line 58`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/d61178352c897359d9477f5d834ae39588311aed/flowrules/superedge.py#L58) in the script `superedge.sh`.
+7. Copy python program [`superedge.py`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file to the super edge node to run the Ryu controller. After getting the "dataoath-id" of all edges from Step 6, copy them and paste them at [`line 58`](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/d61178352c897359d9477f5d834ae39588311aed/flowrules/superedge.py#L58) in the script `superedge.py`.
 
 
 8. Then, run the Ryu controller in super edge by command <br/>
