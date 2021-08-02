@@ -11,4 +11,5 @@ This instructions show how to test static routing.
 
 ## How to run a static routing with preplaned re-routing scheme.
 * The network topology is used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
- [SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Architecture.png) 
+ 
+ ![SDNEdge architecture](./PlanB/Figure_Readme/SADEdge-Architecture.png) 
