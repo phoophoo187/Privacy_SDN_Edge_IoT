@@ -20,4 +20,10 @@ This instructions show how to test static routing.
     `/etc/network/interfaces/`
 2. Check the connectivity of all edge nodes and the super edge node with`ping` command for both control plane and data plane. The expected result after run `ping` command is all edge and super edge nodes can ping to each other.
 
-3. Copy `edge*.sh` file to Edge\#*, for Edge\#1, Edge\#2,...,Edge\#6.
+3. Copy shell script `edge1.sh` file to Edge\#1, and change 1 to 2,...,6 for Edge\#2, Edge\#2,...,Edge\#6, respectively.
+
+4. Set execute permission on script file`edge*.sh` by using command :
+`sudo chmod +x edge1.sh`
+
+5. To run script `edge1.sh` by command: 
+`sudo ./edge1.sh`
