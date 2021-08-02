@@ -10,19 +10,19 @@
 8)	Check the connectivity between ovs in every edge* and Ryu controller by using the command, sudo ovs-vsctl show. If the status is connected, check the Openflow rules are installed in ovs of the edge* by using the command, sudo ovs-ofctl dump-flows br# . ( # is 0 and 1, 0 is for control plane and 1 is for data plane)
 9)	Do ping tests again that did in step2. In this step, ping tests will be successful. --->
 
-## How to run a static routing with the preplaned re-routing scheme
+# A static routing with the preplaned re-routing scheme
 * The network topology is used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
  
  ![SDNEdge architecture](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanB/Figure_Readme/SADEdge-Topology.png) 
  
 * In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE.
-* The main static path is the shortest path from all edge nodes to the super edge node (SE). We use the minimum hopcount as a link cost. 
+* The main static path is the shortest path from all edge nodes to the super edge node (SE). We use the minimum hopcounts as a link cost. 
 * The pre-planed backup paths are shown in the figure below. 
 
  ![preplan-paths of Edge\#1 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge1_SE.png)
 
 
-### Manual setup
+### Manual Setup 
 1. Set all edge nodes in the ad-hoc mode for the control plane and data plane. The setting of ad-hoc mode is written in all edge node in
     `/etc/network/interfaces/` <br/>
 2. Check the connectivity of all edge nodes and the super edge node with`ping` command for both control plane and data plane. The expected result after running `ping` command is all edge nodes and super edge nodes can ping to each other.
