@@ -20,4 +20,4 @@ This instructions show how to test static routing.
     `/etc/network/interfaces/`
 2. Check the connectivity of all edge nodes and the super edge node with`ping` command for both control plane and data plane. The expected result after run `ping` command is all edge and super edge nodes can ping to each other.
 
-3. 
+3. Copy `edge*.sh` file to Edge\#*, for Edge\#1, Edge\#2,...,Edge\#6.
