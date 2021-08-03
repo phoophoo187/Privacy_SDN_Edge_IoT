@@ -6,7 +6,7 @@
 * [Technologies Used](#technologies-used)
 * [Features](#Features)
 * [Setup](#setup)
-* [Usage](#usage)
+* [Scenarios](#scenarios)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
@@ -71,27 +71,18 @@ List the ready features here:
     * Python 3.8 
     * Shell script 
 
-## Usage
-xxx
+## Scenarios
+### Wireless ad-hoc mode
+ - Set all Raspberry Pis work in an Ad-Hoc network mode. [Ref](https://classes.engineering.wustl.edu/ese205/core/index.php?title=Ad-Hoc_Network_%2B_Raspberry_Pi)<br />
 
 ### How to test the link bandwidth of a DEC network
-How do we test the maximum throughput of a link between a edge node pairs:
+- To test the maximum throughput of a link between a edge node pairs :
 
 `iperf3 -u -c 10.0.0.1 -b0 -n 20M -bidir`
+- [Scenarios we test]()
 
-How to test a static routing algorithm for wireless-mesh ad-hoc network: <br />
-1) Let all Raspberry Pis work in an Ad-Hoc network mode [Ref](https://classes.engineering.wustl.edu/ese205/core/index.php?title=Ad-Hoc_Network_%2B_Raspberry_Pi)<br />
-2) Run 'edge#i.sh' file on Raspberry Pi #i for all Edge#i, where i = 1,2,...,6. For example, <br />
-    * Run [edge1.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge1.sh) in a Raspberry Pi for Edge#1 <br />
-    * Run [edge2.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge2.sh) in a Raspberry Pis for Edge#2 <br />
-    * Run [edge3.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge3.sh) in a Raspberry Pis for Edge#4 <br />
-    * Run [edge4.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge4.sh) in a Raspberry Pis for Edge#4 <br />
-    * Run [edge5.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge5.sh) in a Raspberry Pis for Edge#5 <br />
-    * Run [edge6.sh](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/edge6.sh) in a Raspberry Pis for Edge#6 <br />
-3) After running `sh files`, a Raspberry Pi cannot `ping` each other anymore <br />
-4) Run [superedge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/superedge.py) file in superedge by using  <br />
-`ryu-manager superedge.py` 
-6) Run `ping` command again in each Raspberry Pi <br />
+## [How to test a static routing algorithm for wireless-mesh ad-hoc network](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules): <br />
+
 
 
 ## Project Status
