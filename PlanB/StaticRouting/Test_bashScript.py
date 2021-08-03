@@ -24,7 +24,16 @@ def getMACaddress(interfaceName):
 
     return mac_add
 
-def
+def getBroadcast(interfaceName):
+
+
+    addrs = ni.ifaddresses(interfaceName)
+    broadcast_add = addrs[ni.AF_INET][0]['broadcast']
+
+    return broadcast_add
+
+
 ## Test
 print(getIPaddress('en0'))
 print(getMACaddress('en0'))
+print(getBroadcast('en0'))

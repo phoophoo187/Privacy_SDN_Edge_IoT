@@ -8,10 +8,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="Rewrite instruction">
-      <change afterPath="$PROJECT_DIR$/PlanB/StaticRouting/Test_bashScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Privacy_SDN_Edge_IoT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Privacy_SDN_Edge_IoT.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add Test_bashScript.py">
+      <change beforePath="$PROJECT_DIR$/PlanB/StaticRouting/Test_bashScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlanB/StaticRouting/Test_bashScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,13 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
-    </task>
-    <task id="LOCAL-00024" summary="add results in README.md">
-      <created>1626748497592</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1626748497592</updated>
     </task>
     <task id="LOCAL-00025" summary="add results in README.md">
       <created>1626748812585</created>
@@ -447,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627923790596</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="add Test_bashScript.py">
+      <created>1628013318732</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1628013318733</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,6 +476,7 @@
     <MESSAGE value="Update workspace.xml" />
     <MESSAGE value="Team rules" />
     <MESSAGE value="Rewrite instruction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rewrite instruction" />
+    <MESSAGE value="add Test_bashScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Test_bashScript.py" />
   </component>
 </project>
