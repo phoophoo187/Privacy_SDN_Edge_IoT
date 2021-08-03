@@ -21,22 +21,22 @@
 
 
  - The main path and the pre-planned backup paths from Edge\#1 to SE : <br/>
- ![preplan-paths of Edge\#1 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge1_SE.png)
+ ![preplan-paths of Edge\#1 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge1_SE.png)
  
  - The main path and the pre-planned paths from Edge\#2 to SE : <br/>
- ![preplan-paths of Edge\#2 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge2_SE.png)
+ ![preplan-paths of Edge\#2 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge2_SE.png)
  
  - The main path and the pre-planned backup paths from Edge\#3 to SE : <br/>
- ![preplan-paths of Edge\#3 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge3_SE.png)
+ ![preplan-paths of Edge\#3 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge3_SE.png)
  
  - The main path and the pre-planned backup paths from Edge\#4 to SE : <br/>
- ![preplan-paths of Edge\#4 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge4_SE.png)
+ ![preplan-paths of Edge\#4 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge4_SE.png)
  
  - The main path and the pre-planned backup paths from Edge\#5 to SE : <br/>
- ![preplan-paths of Edge\#5 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge5_SE.png)
+ ![preplan-paths of Edge\#5 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge5_SE.png)
  
  - The main path and the pre-planned backup paths from Edge\#6 to SE : <br/>
- ![preplan-paths of Edge\#6 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Preplan_Edge6_SE.png)
+ ![preplan-paths of Edge\#6 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge6_SE.png)
 
 
 
