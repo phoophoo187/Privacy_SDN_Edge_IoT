@@ -25,6 +25,11 @@ def getMACaddress(interfaceName):
     return mac_add
 
 def getBroadcast(interfaceName):
+    """
+    This function is to get the broadcast IP address form the interface
+    :param interfaceName: string of the interface name
+    :return: broadcast IP address
+    """
 
 
     addrs = ni.ifaddresses(interfaceName)
