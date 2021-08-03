@@ -1,5 +1,6 @@
 
-# SADEdge: SDN Assisted Distributed Edge Computing for Privacy Preservation in IoT [![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE) [![Python](https://img.shields.io/pypi/pyversions/Django?style=flat-square)](Python)
+# SADEdge: SDN Assisted Distributed Edge Computing for Privacy Preservation in IoT 
+[![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE) [![Python](https://img.shields.io/pypi/pyversions/Django?style=flat-square)](Python)
 
 
 * [Team Rules](#team-rules)
@@ -136,4 +137,5 @@ We have a communication channel for you to contact us:
  * The project email: somboonbox.daisy@google.com
   
 ## License 
-[![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE) See [LICENSE](https://github.com/google/fully-homomorphic-encryption/blob/main/LICENSE).
+[![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE) 
+See [LICENSE](https://github.com/google/fully-homomorphic-encryption/blob/main/LICENSE).
