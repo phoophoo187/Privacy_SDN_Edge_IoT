@@ -138,4 +138,4 @@ We have a communication channel for you to contact us:
   
 ## License 
 [![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE) 
-See [LICENSE](https://github.com/google/fully-homomorphic-encryption/blob/main/LICENSE).
+[LICENSE](https://github.com/google/fully-homomorphic-encryption/blob/main/LICENSE).
