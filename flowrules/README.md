@@ -11,31 +11,31 @@
 9)	Do ping tests again that did in step2. In this step, ping tests will be successful. --->
 
 # A static routing with the preplaned re-routing scheme
-* The network topology is used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
+* The network topology used for the code in [this repo](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/tree/main/flowrules) is shown in the figure below. 
  
  ![SDNEdge architecture](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanB/Figure_Readme/SADEdge-Topology.png) 
  
-* In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2,..., Edge\#6, and 1 super edge node, i.e., SE.
-* The main static path is the shortest path from all edge nodes to the super edge node (SE). We use the minimum hopcounts as a link cost. 
-* The pre-planned backup paths once the link failure occurs on the main path. <br/>
+* In this experiment, we have 6 edge nodes, ie., Edge\#1, Edge\#2, ...,  Edge\#6, and 1 super edge node (SE).
+* The main static path is the shortest path from all edge nodes to SE. We use the hopcounts as a link cost and choose the shortest as the primary path between an edge node to SE.
+* The pre-planned backup paths are used as the althernative paths once the link failure occurs on the main path. <br/>
 
 
- - The main path and the pre-planned backup paths from Edge\#1 to SE : <br/>
+ - The main path and the pre-planned backup paths from Edge\#1 to SE, where a red cross represents the link failure : <br/>
  ![preplan-paths of Edge\#1 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge1_SE.png)
  
- - The main path and the pre-planned paths from Edge\#2 to SE : <br/>
+ - The main path and the pre-planned paths from Edge\#2 to SE, where a red cross represents the link failure : <br/>
  ![preplan-paths of Edge\#2 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge2_SE.png)
  
- - The main path and the pre-planned backup paths from Edge\#3 to SE : <br/>
+ - The main path and the pre-planned backup paths from Edge\#3 to SE, where a red cross represents the link failure : <br/>
  ![preplan-paths of Edge\#3 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge3_SE.png)
  
- - The main path and the pre-planned backup paths from Edge\#4 to SE : <br/>
+ - The main path and the pre-planned backup paths from Edge\#4 to SE, where a red cross represents the link failure : <br/>
  ![preplan-paths of Edge\#4 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge4_SE.png)
  
- - The main path and the pre-planned backup paths from Edge\#5 to SE : <br/>
+ - The main path and the pre-planned backup paths from Edge\#5 to SE, where a red cross represents the link failure : <br/>
  ![preplan-paths of Edge\#5 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge5_SE.png)
  
- - The main path and the pre-planned backup paths from Edge\#6 to SE : <br/>
+ - The main path and the pre-planned backup paths from Edge\#6 to SE, where a red cross represents the link failure : <br/>
  ![preplan-paths of Edge\#6 to SE](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/flowrules/Figure/Path_Edge6_SE.png)
 
 
