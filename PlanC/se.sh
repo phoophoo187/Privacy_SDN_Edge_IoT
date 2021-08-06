@@ -3,14 +3,14 @@
 edge1_control_mac="98:48:27:e1:32:ad"
 edge2_control_mac="98:48:27:e2:c6:5b"
 edge3_control_mac="98:48:27:e0:21:2a"
-edge4_control_mac="98:48:27:e2:c2:f8"
+edge4_control_mac="98:48:27:e2:c2:0f"
 edge5_control_mac="98:48:27:de:a8:99"
 edge6_control_mac="98:48:27:e2:e8:c7"
 
 edge1_data_mac="98:48:27:e2:bf:82"
 edge2_data_mac="98:48:27:e2:e7:dc"
 edge3_data_mac="98:48:27:de:8f:37"
-edge4_data_mac="98:48:27:de:9e:2c"
+edge4_data_mac="98:48:27:e1:39:b9"
 edge5_data_mac="98:48:27:e0:22:92"
 edge6_data_mac="98:48:27:e0:1d:f4"
 
