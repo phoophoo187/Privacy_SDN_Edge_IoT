@@ -18,8 +18,8 @@ superedge_control_mac="00:0f:00:14:91:d7"
 superedge_data_mac="00:0f:00:10:10:23"
 
 
-superedge_control_ip="10.0.0.8"
-superedge_data_ip="10.0.0.8"
+superedge_control_ip="10.0.0.10"
+superedge_data_ip="192.168.2.10"
 
 edge1_control_ip="10.0.0.1"
 edge2_control_ip="10.0.0.2"
