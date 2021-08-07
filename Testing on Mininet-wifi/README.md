@@ -30,7 +30,7 @@ of IEEE 802.11.
 - The radio frequency is 2.412 GHz. 
 - MAC addresses and IP address of the wireless interfaces of all nodes are as follows.  
 
-| Node| MAC address| IP address |
+| Node (interface)| MAC address| IP address |
 | :---         |     :---:      |          ---: |
 | Edge#1 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
 | Edge#1 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
@@ -47,3 +47,4 @@ of IEEE 802.11.
 | Super-Edge (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
 | Super-Edge (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
 
+- We let `wlan0` be used for the control plane and `wlan1` be used for the data plane.
