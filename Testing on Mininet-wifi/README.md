@@ -24,10 +24,11 @@ Here we present the setting of Mininet-WiFi for the experiments.
 - There are 6 edge nodes and 1 super edge node in the network.
 - The distance between an edge nodes and its neighbor is <b style='color:red'> XX </b> meters.
 - The radio range of each node is  <b style='color:red'> XX </b> meters.
-- All edge nodes and super node have 2 wireless interfaces, i.e., `wlan0` and `wlan1`, which support the ad hoc mode
-of IEEE 802.11.
 - The transmission power is <b style='color:red'> XX </b> dBm. 
 - The radio frequency is 2.412 GHz. 
+- All edge nodes and super node have 2 wireless interfaces, i.e., `wlan0` and `wlan1`, which support the ad hoc mode
+of IEEE 802.11.
+- `wlan0` is used for the control plane, and `wlan1` is used for the data plane.
 - MAC addresses and IP address of the wireless interfaces of all nodes are as follows.  
 
 | Node (interface)| MAC address| IP address |
@@ -47,4 +48,3 @@ of IEEE 802.11.
 | Super-Edge (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
 | Super-Edge (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
 
-- We let `wlan0` be used for the control plane and `wlan1` be used for the data plane.
