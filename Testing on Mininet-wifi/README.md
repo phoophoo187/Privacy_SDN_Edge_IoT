@@ -30,3 +30,5 @@ of IEEE 802.11.
 - The radio frequency is 2.412 GHz. 
 - MAC addresses of all nodes are as follows.  
 *Edge\#1 : <b style='color:red'> XXXXX </b>*
+- <h3 style="color:#ff0000">Danger</h3>
+

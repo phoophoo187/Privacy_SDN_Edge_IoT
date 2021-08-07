@@ -8,10 +8,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add Test_bashScript.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing on Mininet-wifi/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Testing on Mininet-wifi/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add Readme mininet-wifi" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,27 +99,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
-    </task>
-    <task id="LOCAL-00027" summary="add results in README.md">
-      <created>1626750119365</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1626750119365</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add results in README.md">
-      <created>1626750983594</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1626750983594</updated>
-    </task>
-    <task id="LOCAL-00029" summary="add main README.md">
-      <created>1626762642015</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1626762642015</updated>
     </task>
     <task id="LOCAL-00030" summary="add main README.md">
       <created>1626790712094</created>
@@ -446,7 +422,28 @@
       <option name="project" value="LOCAL" />
       <updated>1628013798359</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="add Readme mininet-wifi">
+      <created>1628359687626</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1628359687627</updated>
+    </task>
+    <task id="LOCAL-00077" summary="add Readme mininet-wifi">
+      <created>1628359815260</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1628359815260</updated>
+    </task>
+    <task id="LOCAL-00078" summary="add Readme mininet-wifi">
+      <created>1628359892023</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1628359892023</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,6 +475,7 @@
     <MESSAGE value="Team rules" />
     <MESSAGE value="Rewrite instruction" />
     <MESSAGE value="add Test_bashScript.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Test_bashScript.py" />
+    <MESSAGE value="add Readme mininet-wifi" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Readme mininet-wifi" />
   </component>
 </project>
