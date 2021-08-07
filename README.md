@@ -88,8 +88,8 @@ List the ready features here:
 
 
 ## Project Status
-SADEdge is under developing...
-We keep our progress as fast as possible :-)
+SADEdge is under developemnt.
+So far, we try to push our progress as fast as possible :-)
 
 ## Room for Improvement
 
