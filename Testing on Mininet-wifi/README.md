@@ -28,7 +28,22 @@ Here we present the setting of Mininet-WiFi for the experiments.
 of IEEE 802.11.
 - The transmission power is <b style='color:red'> XX </b> dBm. 
 - The radio frequency is 2.412 GHz. 
-- MAC addresses of all nodes are as follows.  
-*Edge\#1 : <b style='color:red'> XXXXX </b>*
-- <h3 style="color:#ff0000">Danger</h3>
+- MAC addresses and IP address of the wireless interfaces of all nodes are as follows.  
+
+| Node| MAC address| IP address |
+| :---         |     :---:      |          ---: |
+| Edge#1 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#1 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#2 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#2 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#3(wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#3 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#4 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#4 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#5 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#5 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#6 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#6 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Super-Edge (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Super-Edge (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
 
