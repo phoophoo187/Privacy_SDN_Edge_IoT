@@ -22,7 +22,7 @@ Run all programs with python3
 Here we present the setting of Mininet-WiFi for the experiments.
 ## Wireless Mesh Network Topology
 - There are 6 edge nodes and 1 super edge node in the network.
-- The distance between an edge nodes and its neighbor are <b style='color:red'> XX </b> meters.
+- The distance between an edge nodes and its neighbor is <b style='color:red'> XX </b> meters.
 - The radio range of each node is  <b style='color:red'> XX </b> meters.
 - All edge nodes and super node have 2 wireless interfaces, i.e., `wlan0` and `wlan1`, which support the ad hoc mode
 of IEEE 802.11.
