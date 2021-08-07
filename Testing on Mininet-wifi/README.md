@@ -18,7 +18,7 @@ https://ryu.readthedocs.io/en/latest/getting_started.html
 Note***
 Run all programs with python3
 
-# Mininet-WiFi Setting Environment
+# Mininet-WiFi Environment
 Here we present the setting of Mininet-WiFi for the experiments.
 ## Wireless Mesh Network Topology
 - There are 6 edge nodes and 1 super edge node in the network.
