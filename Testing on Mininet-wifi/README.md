@@ -29,4 +29,4 @@ of IEEE 802.11.
 - The transmission power is <b style='color:red'> XX </b> dBm. 
 - The radio frequency is 2.412 GHz. 
 - MAC addresses of all nodes are as follows.  
-** Edge\#1 : <b style='color:red'> XXXXX </b>
+*Edge\#1 : <b style='color:red'> XXXXX </b>*
