@@ -4,7 +4,7 @@
 Since all edges are close to each other in indoor testing, edge4 will reach to superedge with one hop.
 But in the real environment, edge4 cannot reach to superedge with one hop. The primary route for edge4 to superedge is edge4->edge1->superedge.
 
-3> To test primary route, Run edge1_pretest.sh in edge1. Run edge2_pretest.sh in edge2. Run edge4_pretest.sh in edge4. Run se.sh in superedge.
+3> To test primary route, Run edge1_pretest.sh in edge1. Run edge2_pretest.sh in edge2. Run edge4_pretest.sh in edge4. Run se_pretest.sh in superedge.
 Ping edge4 to superedge, Ping test will be successful. But, if you check with tcpdump or wireshark, you will see that the packets from edge4 goes 
 to edge1 first and edge1 relays that packet to superedge. The Openflow rules written in script files do that primary route.
 
