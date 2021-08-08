@@ -65,8 +65,8 @@ sudo ovs-vsctl add-port br1 $data_interface -- set Interface $data_interface ofp
 
 sudo ifconfig $control_interface 0
 sudo ifconfig $data_interface 0
-sudo ifconfig br0 $edge1_control_ip netmask 255.255.255.0 up
-sudo ifconfig br1 $edge1_data_ip netmask 255.255.255.0 up
+sudo ifconfig br0 $edge2_control_ip netmask 255.255.255.0 up
+sudo ifconfig br1 $edge2_data_ip netmask 255.255.255.0 up
 sudo iptables -A INPUT -i $control_interface -j DROP #Required to do only OpenVswitch in userspace mode
 sudo iptables -A FORWARD -i $control_interface -j DROP #Required to do only OpenVswitch in userspace mode
 sudo iptables -A INPUT -i $data_interface -j DROP #Required to do only OpenVswitch in userspace mode
@@ -94,6 +94,18 @@ sudo ovs-vsctl set bridge br1 stp_enable=true
 #sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=1,dl_src=$superedge_control_mac,nw_dst=$edge2_control_ip,actions=LOCAL
 
 #Receive the incoming data traffic to edge2 from edge1,edge3,edge5 and superedge
+
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=1,dl_src=$edge1_control_mac,arp_tpa=$edge2_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=1,dl_src=$edge3_control_mac,arp_tpa=$edge2_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=1,dl_src=$edge5_control_mac,arp_tpa=$edge2_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=1,dl_src=$superedge_control_mac,arp_tpa=$edge2_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=1,dl_src=$edge1_control_mac,nw_dst=$edge2_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=1,dl_src=$edge3_control_mac,nw_dst=$edge2_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=1,dl_src=$edge5_control_mac,nw_dst=$edge2_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=1,dl_src=$superedge_control_mac,nw_dst=$edge2_control_ip,actions=LOCAL
+
+
+
 sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=2,dl_src=$edge1_data_mac,arp_tpa=$edge2_data_ip,actions=LOCAL
 sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=2,dl_src=$edge3_data_mac,arp_tpa=$edge2_data_ip,actions=LOCAL
 sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=2,dl_src=$edge5_data_mac,arp_tpa=$edge2_data_ip,actions=LOCAL
@@ -120,6 +132,16 @@ sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=LOCAL,arp_tpa=$edge3_data_i
 sudo ovs-ofctl add-flow br1 ip,priority=100,in_port=LOCAL,nw_dst=$edge3_data_ip,actions=output:2
 sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=LOCAL,arp_tpa=$edge5_data_ip,actions=output:2
 sudo ovs-ofctl add-flow br1 ip,priority=100,in_port=LOCAL,nw_dst=$edge5_data_ip,actions=output:2
+
+
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=LOCAL,arp_tpa=$superedge_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=LOCAL,nw_dst=$superedge_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=LOCAL,arp_tpa=$edge1_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=LOCAL,nw_dst=$edge1_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=LOCAL,arp_tpa=$edge3_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=LOCAL,nw_dst=$edge3_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=LOCAL,arp_tpa=$edge5_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=LOCAL,nw_dst=$edge5_control_ip,actions=output:1
 
 
 
@@ -258,3 +280,4 @@ sudo ovs-ofctl add-flow br1 priority=1,in_port=2,actions=drop
 #sudo route add -host $superedge_control_ip gw $edge2_control_ip
 #sudo route add -host $superedge_data_ip gw $edge2_data_ip
 sudo sysctl -p
+
