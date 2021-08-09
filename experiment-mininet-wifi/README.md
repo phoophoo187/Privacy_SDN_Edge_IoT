@@ -9,7 +9,7 @@ So we move to the newer version of Ubuntu which is 20.04.
 For ubuntu20.04, we got some errors about strncopy in python. It might be because the libs are too new for mininet-wifi.
 That is why we decided to use Ubuntu18.04.
 <br>
-## Instalation
+## Installation
 After we get a clean installation and updated of Ubuntu18.04. 
 We follow these steps.
 - **step 1:** $sudo apt-get update
@@ -48,3 +48,15 @@ We recommend creating a parent folder to store the mininet-wifi source code befo
 - **step 16:** $pip3 install
 - **step 17:** $pip install -r tools/optional-requires   #install extra packages
 <br>#Note make sure pip3 is not too old in order to avoid any installation error.
+
+## Runing an Experiment
+To setup the topology for the experiment
+- $sudo python3 topology.py
+<br> After mininet-wifi is run and all nodes are loaded, we will get the *mininet-wifi>* prompt. 
+Run the command below to oper terminal in the h1.
+
+![image](https://user-images.githubusercontent.com/13536277/128671129-d8ef97fa-a7b9-43fd-b8bf-9556459fb992.png)
+
+- **mininet-wifi>** xterm h1 
+<br> the new xterm window of **node:h1** is opened. At the prompt run ryuAtSuperEdge.py
+- #python3 ryuAtSuperEdge.py
