@@ -1,5 +1,4 @@
-# Mininet-WiFi installation
-We start this project on 07/2021.
+# Mininet-WiFi installation (08/2021)
 In this project, we install Mininet-WiFi on Ubuntu18.04.
 The official mininet-wifi site recommends using Ubuntu16.04 or higher.
 We have tested installing on Ubuntu16.04 and Ubuntu20.04 and we got some errors.
