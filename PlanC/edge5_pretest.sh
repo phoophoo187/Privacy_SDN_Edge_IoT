@@ -1,5 +1,5 @@
 #This rules are written by PPTLT@NECTEC for SDNIOTEDGE project 
-#@edge4#
+#@edge5#
 edge1_control_mac="98:48:27:e1:32:ad"
 edge2_control_mac="98:48:27:e2:c6:5b"
 edge3_control_mac="98:48:27:e0:21:2a"
@@ -54,8 +54,8 @@ sudo ovs-vsctl --if-exist del-br br1
 sudo ovs-vsctl add-br br0
 sudo ovs-vsctl add-br br1
 
-sudo ovs-vsctl set bridge br0 other-config:datapath-id=1000000000000004
-sudo ovs-vsctl set bridge br1 other-config:datapath-id=1000000000000040
+sudo ovs-vsctl set bridge br0 other-config:datapath-id=1000000000000005
+sudo ovs-vsctl set bridge br1 other-config:datapath-id=1000000000000050
 
 sudo ovs-vsctl set bridge br0 datapath_type=netdev
 sudo ovs-vsctl set bridge br1 datapath_type=netdev
@@ -66,8 +66,8 @@ sudo ovs-vsctl add-port br1 $data_interface -- set Interface $data_interface ofp
 
 sudo ifconfig $control_interface 0
 sudo ifconfig $data_interface 0
-sudo ifconfig br0 $edge4_control_ip netmask 255.255.255.0 up
-sudo ifconfig br1 $edge4_data_ip netmask 255.255.255.0 up
+sudo ifconfig br0 $edge5_control_ip netmask 255.255.255.0 up
+sudo ifconfig br1 $edge5_data_ip netmask 255.255.255.0 up
 sudo iptables -A INPUT -i $control_interface -j DROP #Required to do only OpenVswitch in userspace mode
 sudo iptables -A FORWARD -i $control_interface -j DROP #Required to do only OpenVswitch in userspace mode
 sudo iptables -A INPUT -i $data_interface -j DROP #Required to do only OpenVswitch in userspace mode
@@ -84,33 +84,32 @@ sudo ovs-vsctl set controller br1 connection-mode=out-of-band
 sudo ovs-vsctl set-fail-mode br1 secure
 sudo ovs-vsctl set bridge br1 stp_enable=true
 
-
-#Receive the incoming control and data traffic from edge1 @ edge4
-sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=1,dl_src=$edge1_control_mac,arp_tpa=$edge4_control_ip,actions=LOCAL
-sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=2,dl_src=$edge1_data_mac,arp_tpa=$edge4_data_ip,actions=LOCAL
-sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=1,dl_src=$edge1_control_mac,nw_dst=$edge4_control_ip,actions=LOCAL
-sudo ovs-ofctl add-flow br1 ip,priority=100,in_port=2,dl_src=$edge1_data_mac,nw_dst=$edge4_data_ip,actions=LOCAL
-
+#Receive the incoming control and data traffic from edge2 @ edge5
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=1,dl_src=$edge2_control_mac,arp_tpa=$edge5_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=2,dl_src=$edge2_data_mac,arp_tpa=$edge5_data_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=1,dl_src=$edge2_control_mac,nw_dst=$edge5_control_ip,actions=LOCAL
+sudo ovs-ofctl add-flow br1 ip,priority=100,in_port=2,dl_src=$edge2_data_mac,nw_dst=$edge5_data_ip,actions=LOCAL
 
 
-#send the control and data packet from edge4 to edge1 and superedge
-
-sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=LOCAL,arp_tpa=$edge1_control_ip,actions=output:1
-sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=LOCAL,nw_dst=$edge1_control_ip,actions=output:1
+#send the control and data packet from edge5 to edge2 and superedge
+sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=LOCAL,arp_tpa=$edge2_control_ip,actions=output:1
+sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=LOCAL,nw_dst=$edge2_control_ip,actions=output:1
 sudo ovs-ofctl add-flow br0 arp,priority=100,in_port=LOCAL,nw_dst=$superedge_control_ip,actions="resubmit(,2)"
 sudo ovs-ofctl add-flow br0 ip,priority=100,in_port=LOCAL,nw_dst=$superedge_control_ip,actions="resubmit(,2)"
 
 
-sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=LOCAL,arp_tpa=$edge1_data_ip,actions=output:2
-sudo ovs-ofctl add-flow br1 ip,priority=100,in_port=LOCAL,nw_dst=$edge1_data_ip,actions=output:2
+sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=LOCAL,arp_tpa=$edge2_data_ip,actions=output:2
+sudo ovs-ofctl add-flow br1 ip,priority=100,in_port=LOCAL,nw_dst=$edge2_data_ip,actions=output:2
 sudo ovs-ofctl add-flow br1 arp,priority=100,in_port=LOCAL,nw_dst=$superedge_data_ip,actions="resubmit(,2)"
 sudo ovs-ofctl add-flow br1 ip,priority=100,in_port=LOCAL,nw_dst=$superedge_data_ip,actions="resubmit(,2)"
 
 
-#Table 2 is to rewrite the destination MAC address into edge1 MAC address @ control plane
-sudo ovs-ofctl add-flow br0 table=2,actions=mod_dl_dst:$edge1_control_mac,"load:0->OXM_OF_IN_PORT[],resubmit(,5)"
+
+#Table 2 is to rewrite the destination MAC address into edge2 MAC address @ control plane
+sudo ovs-ofctl add-flow br0 table=2,actions=mod_dl_dst:$edge2_control_mac,"load:0->OXM_OF_IN_PORT[],resubmit(,5)"
 #Table 2 is to rewrite the destination MAC address into edge1 MAC address @ data plane
-sudo ovs-ofctl add-flow br1 table=2,actions=mod_dl_dst:$edge1_data_mac,"load:0->OXM_OF_IN_PORT[],resubmit(,5)"
+sudo ovs-ofctl add-flow br1 table=2,actions=mod_dl_dst:$edge2_data_mac,"load:0->OXM_OF_IN_PORT[],resubmit(,5)"
+
 
 
 #Table 5 is to forward to wireless interface @ control plane
@@ -122,6 +121,7 @@ sudo ovs-ofctl add-flow br1 table=5,actions=output:2
 sudo ovs-ofctl add-flow br0 priority=1,in_port=1,actions=drop
 #To prevent the infinite loop @ data plane
 sudo ovs-ofctl add-flow br1 priority=1,in_port=2,actions=drop
+
 
 sudo sysctl -p
 
