@@ -4,4 +4,5 @@
      $`pip3 install python-igraph`
 - If you use `conda`, we install python-igraph by </br>
    $`conda install -c conda-forge python-igraph`
+- If you have a problem with plot a graph, you may need to install [cairograph](https://www.cairographics.org/download/)
   
