@@ -12,4 +12,4 @@ Reference : [NetworkX](https://networkx.org/documentation/latest/tutorial.html)
 - If you use `pip install`, we use command :
   - $`pip3 install networkx`
 - Use [Dijkstra algorithm](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.dijkstra_path.html) 
-- 
+  - [Tutorial](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Simple_edge_topology.ipynb)
