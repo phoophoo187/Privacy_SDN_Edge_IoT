@@ -9,8 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add NetworkX tutorial">
+      <change afterPath="$PROJECT_DIR$/Python_Graph/.ipynb_checkpoints/Simple_edge_topology-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Python_Graph/Simple_edge_topology.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python_Graph/NetworkX Tutorial.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/NetworkX Tutorial.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python_Graph/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,13 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
-    </task>
-    <task id="LOCAL-00039" summary="revise main README.md">
-      <created>1626928900646</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1626928900646</updated>
     </task>
     <task id="LOCAL-00040" summary="revise main README.md">
       <created>1626929017648</created>
@@ -446,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628794887979</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="add NetworkX tutorial">
+      <created>1628795104327</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1628795104327</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
