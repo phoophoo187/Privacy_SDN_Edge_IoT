@@ -1,8 +1,8 @@
 # How to create a network topology in Python
 - Reference: [python-igraph](https://igraph.org/python/)
 - If you use `pip install`, we use the package of python-igraph by installed with `pip3` as following: </br>
-     $`pip3 install python-igraph`
+  - $`pip3 install python-igraph`
 - If you use `conda`, we install python-igraph by </br>
-   $`conda install -c conda-forge python-igraph`
+  - $`conda install -c conda-forge python-igraph`
 - If you have a problem with plot a graph, you may need to install [cairograph](https://www.cairographics.org/download/)
   
