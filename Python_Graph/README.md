@@ -5,7 +5,9 @@ Reference: [python-igraph](https://igraph.org/python/)
   - $`pip3 install python-igraph`
 - If you use `conda`, we install python-igraph by </br>
   - $`conda install -c conda-forge python-igraph`
-- If you have a problem with plot a graph, you may need to install [cairograph](https://www.cairographics.org/download/)
+- If you have a problem with plotting a graph, you may need to install [cairograph](https://www.cairographics.org/download/)
   
 ## NetworkX
 Reference : [NetworkX](https://networkx.org/documentation/latest/tutorial.html)
+- If you use `pip install`, we use command :
+  - $`pip3 install networkx
