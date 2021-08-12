@@ -8,9 +8,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add Readme mininet-wifi">
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add NetworkX tutorial">
+      <change beforePath="$PROJECT_DIR$/Python_Graph/NetworkX Tutorial.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/NetworkX Tutorial.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python_Graph/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python_iGraph/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Python_iGraph/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,27 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
-    </task>
-    <task id="LOCAL-00036" summary="revise main README.md">
-      <created>1626842577952</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1626842577952</updated>
-    </task>
-    <task id="LOCAL-00037" summary="revise main README.md">
-      <created>1626842616997</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1626842616997</updated>
-    </task>
-    <task id="LOCAL-00038" summary="revise main README.md">
-      <created>1626843205930</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1626843205930</updated>
     </task>
     <task id="LOCAL-00039" summary="revise main README.md">
       <created>1626928900646</created>
@@ -446,7 +425,28 @@
       <option name="project" value="LOCAL" />
       <updated>1628794446779</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="add NetworkX tutorial">
+      <created>1628794711731</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1628794711731</updated>
+    </task>
+    <task id="LOCAL-00086" summary="add NetworkX tutorial">
+      <created>1628794764189</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1628794764189</updated>
+    </task>
+    <task id="LOCAL-00087" summary="add NetworkX tutorial">
+      <created>1628794887979</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1628794887979</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,6 +479,7 @@
     <MESSAGE value="Rewrite instruction" />
     <MESSAGE value="add Test_bashScript.py" />
     <MESSAGE value="add Readme mininet-wifi" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Readme mininet-wifi" />
+    <MESSAGE value="add NetworkX tutorial" />
+    <option name="LAST_COMMIT_MESSAGE" value="add NetworkX tutorial" />
   </component>
 </project>
