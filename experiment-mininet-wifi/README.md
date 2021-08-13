@@ -9,7 +9,7 @@ For ubuntu20.04, we got some errors about strncopy in python. It might be becaus
 That is why we decided to use Ubuntu18.04.
 <br>
 ## Installation
-After we get a clean installation and updated of Ubuntu18.04. 
+After we got a clean installation and updated of Ubuntu18.04. 
 We follow these steps.
 - **step 1:** $sudo apt-get update
 - **step 2:** $sudo apt-get upgrade
@@ -36,7 +36,7 @@ We recommend creating a parent folder to store the mininet-wifi source code befo
 <br>*install.sh options:
 <br>-3: installs OpenFlow 1.3 versions
 <br>-f: OpenFlow*
-<br>Note: we have try combined step 11 and 12 with -Wln3fv option but we got some errors 
+<br>Note: we have tried to combine step 11 and 12 with -Wln3fv option but we got some errors 
 
 <br>In this work, we need The Ryu controller https://ryu.readthedocs.io/en/latest/getting_started.html.
 <br> We have tested installing the Ryu from pip directly. We got error about eveltlet.wsgi which is 'cannot import name ALREADY_HANDLED'. So, we install Ryu from the source code instead.
