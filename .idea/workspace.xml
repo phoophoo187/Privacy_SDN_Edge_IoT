@@ -8,7 +8,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add NetworkX tutorial">
+    <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="update Readme for optimum pruning based routing algorithm">
+      <change beforePath="$PROJECT_DIR$/Python_Graph/A simple graph with optimal pruning based routing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/A simple graph with optimal pruning based routing.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python_Graph/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,13 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
-    </task>
-    <task id="LOCAL-00042" summary="revise main README.md">
-      <created>1626929222907</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1626929222907</updated>
     </task>
     <task id="LOCAL-00043" summary="revise main README.md">
       <created>1626973794230</created>
@@ -445,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628958659401</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="update Readme for optimum pruning based routing algorithm">
+      <created>1628963284715</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1628963284715</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,6 +480,7 @@
     <MESSAGE value="add Test_bashScript.py" />
     <MESSAGE value="add Readme mininet-wifi" />
     <MESSAGE value="add NetworkX tutorial" />
-    <option name="LAST_COMMIT_MESSAGE" value="add NetworkX tutorial" />
+    <MESSAGE value="update Readme for optimum pruning based routing algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Readme for optimum pruning based routing algorithm" />
   </component>
 </project>
