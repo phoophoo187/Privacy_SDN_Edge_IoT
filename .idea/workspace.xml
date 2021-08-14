@@ -10,7 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add NetworkX tutorial">
       <change beforePath="$PROJECT_DIR$/Python_Graph/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python_Graph/Simple_Graph_with_multiple_edge_attributes.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/Simple_Graph_with_multiple_edge_attributes.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,20 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626497472783</updated>
-    </task>
-    <task id="LOCAL-00040" summary="revise main README.md">
-      <created>1626929017648</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1626929017648</updated>
-    </task>
-    <task id="LOCAL-00041" summary="revise main README.md">
-      <created>1626929140641</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1626929140641</updated>
     </task>
     <task id="LOCAL-00042" summary="revise main README.md">
       <created>1626929222907</created>
@@ -446,7 +431,21 @@
       <option name="project" value="LOCAL" />
       <updated>1628795104327</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="add NetworkX tutorial">
+      <created>1628958578090</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1628958578091</updated>
+    </task>
+    <task id="LOCAL-00090" summary="add NetworkX tutorial">
+      <created>1628958659400</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1628958659401</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

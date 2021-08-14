@@ -16,3 +16,4 @@ Reference : [NetworkX](https://networkx.org/documentation/latest/tutorial.html)
 - Examples of creating a simple graph with networkx
   - [Create a simple graph](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Simple_edge_topology.ipynb)
   - [How to find a shortest path with Dijkstra's algorithm](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Simple_Graph_with_multiple_edge_attributes.ipynb)
+  - [How to run the optimum-pruning-based routing algorithm](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Routing%20algorithm%20for%20a%20simple%20graph%20with%20optimal%20pruning%20based%20routing.ipynb)
