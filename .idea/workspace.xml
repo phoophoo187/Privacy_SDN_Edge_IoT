@@ -9,9 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="add NetworkX tutorial">
-      <change afterPath="$PROJECT_DIR$/Python_Graph/.ipynb_checkpoints/Simple_edge_topology-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Python_Graph/Simple_edge_topology.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python_Graph/NetworkX Tutorial.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/NetworkX Tutorial.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python_Graph/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python_Graph/Simple_Graph_with_multiple_edge_attributes.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python_Graph/Simple_Graph_with_multiple_edge_attributes.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
