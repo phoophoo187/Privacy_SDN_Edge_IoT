@@ -13,6 +13,6 @@ Reference : [NetworkX](https://networkx.org/documentation/latest/tutorial.html)
   - $`pip3 install networkx`
 - Use [Dijkstra algorithm](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.weighted.dijkstra_path.html) 
   - [Tutorial](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Simple_edge_topology.ipynb)
-- Example of creating a simple graph with networkx
-  - [A simple graph tutorial](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Simple_edge_topology.ipynb)
+- Examples of creating a simple graph with networkx
+  - [Create a simple graph](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Simple_edge_topology.ipynb)
   - [How to find a shortest path with Dijkstra's algorithm](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/Python_Graph/Simple_Graph_with_multiple_edge_attributes.ipynb)
