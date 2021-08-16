@@ -61,7 +61,6 @@ Run the command below to oper terminal in the h1.
 - #python3 ryuAtSuperEdge.py
 
 
-(<-- two spaces)
-Interesting link
 
-https://www.grotto-networking.com/SDNfun.html
+## Interesting links
+SDN fun: https://www.grotto-networking.com/SDNfun.html
