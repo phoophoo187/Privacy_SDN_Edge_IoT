@@ -74,31 +74,31 @@ superedge_data_interface="wlx000f00101023"
 def getDeviceName(datapath):
     if str(edge1_datapath_id_control) == datapath:
         return "edge1_control"
-	elif str(edge1_datapath_id_data) == datapath:
+    elif str(edge1_datapath_id_data) == datapath:
         return "edge1_data"
     elif str(edge2_datapath_id_control) == datapath:
         return "edge2_control"
-	elif str(edge2_datapath_id_data) == datapath:
+    elif str(edge2_datapath_id_data) == datapath:
         return "edge2_data"
     elif str(edge3_datapath_id_control) == datapath:
         return "edge3_control"
-	elif str(edge3_datapath_id_data) == datapath:
+    elif str(edge3_datapath_id_data) == datapath:
         return "edge3_data"
     elif str(edge4_datapath_id_control) == datapath:
         return "edge4_control"
-	elif str(edge4_datapath_id_data) == datapath:
+    elif str(edge4_datapath_id_data) == datapath:
         return "edge4_data"
     elif str(edge5_datapath_id_control) == datapath:
         return "edge5_control"
-	elif str(edge5_datapath_id_data) == datapath:
+    elif str(edge5_datapath_id_data) == datapath:
         return "edge5_data"
     elif str(edge6_datapath_id_control) == datapath:
         return "edge6_control"
-	elif str(edge6_datapath_id_data) == datapath:
+    elif str(edge6_datapath_id_data) == datapath:
         return "edge6_data"
     elif str(superedge_datapath_id_control) == datapath:
         return "superedge_control"
-	elif str(superedge_datapath_id_data) == datapath:
+    elif str(superedge_datapath_id_data) == datapath:
         return "superedge_data"
     else:
         return "no device"
@@ -241,41 +241,41 @@ class link_failure (app_manager.RyuApp):
         if deviceName in self.flow_stats:
             self.flow_stats_prev[deviceName] = self.flow_stats[deviceName]
         self.flow_stats[deviceName] = ev.msg.body
-		
+        
     def check_all_links(self):
         if len(self.flow_stats_prev) == 0 or len(self.flow_stats) == 0:
             self.logger.info('Currently no data')
         else:
             #check edge1 to superedge
             self.check_link('superedge_control', edge1_control_mac, superedge_control_ip, 'control:edge1->superedge')
-			self.check_link('superedge_data', edge1_data_mac, superedge_data_ip, 'data:edge1->superedge')			
+            self.check_link('superedge_data', edge1_data_mac, superedge_data_ip, 'data:edge1->superedge')            
             #check edge2 to superedge
             self.check_link('superedge_control', edge2_control_mac, superedge_control_ip, 'control:edge2->superedge')
-			self.check_link('superedge_data', edge2_data_mac, superedge_data_ip, 'data:edge2->superedge')
+            self.check_link('superedge_data', edge2_data_mac, superedge_data_ip, 'data:edge2->superedge')
             #check edge3 to superedge
             self.check_link('superedge_control', edge3_control_mac, superedge_control_ip, 'control:edge3->superedge')
-			self.check_link('superedge_data', edge3_data_mac, superedge_data_ip, 'data:edge3->superedge')
+            self.check_link('superedge_data', edge3_data_mac, superedge_data_ip, 'data:edge3->superedge')
             #check edge1 to edge2
             self.check_link('edge1_control', edge1_control_mac, edge2_control_ip, 'control:edge1->edge2')
-			self.check_link('edge1_data', edge1_data_mac, edge2_data_ip, 'data:edge1->edge2')
+            self.check_link('edge1_data', edge1_data_mac, edge2_data_ip, 'data:edge1->edge2')
             #check edge2 to edge3
             self.check_link('edge2_control', edge2_control_mac, edge3_control_ip, 'control:edge2->edge3')
-			self.check_link('edge2_data', edge2_data_mac, edge3_data_ip, 'data:edge2->edge3')
+            self.check_link('edge2_data', edge2_data_mac, edge3_data_ip, 'data:edge2->edge3')
             #check edge4 to edge1
             self.check_link('edge1_control', edge4_control_mac, edge1_control_ip, 'control:edge4->edge1')
-			self.check_link('edge1_data', edge4_data_mac, edge1_data_ip, 'data:edge4->edge1')
+            self.check_link('edge1_data', edge4_data_mac, edge1_data_ip, 'data:edge4->edge1')
             #check edge4 to edge5
             self.check_link('edge5_control', edge4_control_mac, edge5_control_ip, 'control:edge4->edge5')
-			self.check_link('edge5_data', edge4_data_mac, edge5_data_ip, 'data:edge4->edge5')
+            self.check_link('edge5_data', edge4_data_mac, edge5_data_ip, 'data:edge4->edge5')
             #check edge5 to edge2
             self.check_link('edge2_control', edge5_control_mac, edge2_control_ip, 'control:edge5->edge2')
-			self.check_link('edge2_data', edge5_data_mac, edge2_data_ip, 'data:edge5->edge2')
+            self.check_link('edge2_data', edge5_data_mac, edge2_data_ip, 'data:edge5->edge2')
             #check edge5 to edge6
             self.check_link('edge6_control', edge5_control_mac, edge6_control_ip, 'control:edge5->edge6')
-			self.check_link('edge6_data', edge5_data_mac, edge6_data_ip, 'data:edge5->edge6')
+            self.check_link('edge6_data', edge5_data_mac, edge6_data_ip, 'data:edge5->edge6')
             #check edge6 to edge3
             self.check_link('edge3_control', edge6_control_mac, edge3_control_ip, 'control:edge6->edge3')
-			self.check_link('edge3_data', edge6_data_mac, edge3_data_ip, 'data:edge6->edge3')
+            self.check_link('edge3_data', edge6_data_mac, edge3_data_ip, 'data:edge6->edge3')
 
     def is_size_diff(self, curr, prev):
         if curr.packet_count == prev.packet_count:
@@ -373,8 +373,7 @@ class link_failure (app_manager.RyuApp):
                 self.logger.info("Redirect with control:edge6->edge5->edge4->edge1->superedge")
             else:
                 self.logger.info("All alternative control routes between edge 6 and superedge are down")
-				
-		if 'data:edge1->superedge' in self.link_down:
+        if 'data:edge1->superedge' in self.link_down:
             self.logger.info("When the data link between edge1 and superedge is down..........")
             if 'data:edge1->edge2' not in self.link_down and 'data:edge2->superedge' not in self.link_down:
                 self.logger.info("Redirect with data:edge1->edge2->superedge")				
