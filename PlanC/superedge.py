@@ -374,9 +374,6 @@ class link_failure (app_manager.RyuApp):
             else:
                 self.logger.info("All alternative control routes between edge 6 and superedge are down")
 				
-				
-		
-		
 		if 'data:edge1->superedge' in self.link_down:
             self.logger.info("When the data link between edge1 and superedge is down..........")
             if 'data:edge1->edge2' not in self.link_down and 'data:edge2->superedge' not in self.link_down:
