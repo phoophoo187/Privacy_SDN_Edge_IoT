@@ -29,6 +29,10 @@ it in the superedge.py in the flowrules folder.
     $`sudo ovs-ofctl dump-flows br0` <br/>
 If you cannot see any flow, do the ping again and recheck. <br/>
 
+3. Remove flows from switch <br/>
+    $`sudo ovs-ofctl del-flows <expression>` <br/>
 Examples of the results: <br/>
 $`sudo ovs-ofctl show br0` <br/>
-![show command](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanC/Results/flowrules%40br0%40CPD.png)
+![show command](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanC/Results/edge1_connected.png)
+$`sudo ovs-ofctl dump-flows br0` <br/>
+![See flows](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanC/Results/flowrules%40br0%40CPD.png)
