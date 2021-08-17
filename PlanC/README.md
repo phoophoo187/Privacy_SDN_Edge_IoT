@@ -28,4 +28,7 @@ it in the superedge.py in the flowrules folder.
 2. See the flows <br/>
     $`sudo ovs-ofctl dump-flows br0` <br/>
 If you cannot see any flow, do the ping again and recheck. <br/>
-3. 
+
+Examples of the results: <br/>
+$`sudo ovs-ofctl show br0` <br/>
+![show command](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/PlanC/Results/flowrules%40br0%40CPD.png)
