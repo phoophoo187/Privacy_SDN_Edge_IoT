@@ -18,3 +18,14 @@ controller or not. If the result of "sudo ovs-vsctl show" replies the status " i
 it in the superedge.py in the flowrules folder. 
 
 7> Do the above steps for edge3,edge5 and edge6 also.
+
+## Common commands of OpenFlow and OVS
+
+### First Step!
+1. The *show* command connects to the switch and prints out port state and OF capabilities, where `br0` is the listening port. <br/>
+    $`sudo ovs-ofctl show br0` <br/>
+
+2. See the flows <br/>
+    $`sudo ovs-ofctl dump-flows br0` <br/>
+If you cannot see any flow, do the ping again and recheck. <br/>
+3. 
