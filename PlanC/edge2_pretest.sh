@@ -2,18 +2,17 @@
 #@edge2#
 edge1_control_mac="98:48:27:e1:32:ad"
 edge2_control_mac="98:48:27:e2:c6:5b"
-edge3_control_mac="98:48:27:e0:21:2a"
+edge3_control_mac="60:a4:b7:2f:5c:f0"
 edge4_control_mac="98:48:27:e2:c2:0f"
-edge5_control_mac="98:48:27:de:a8:99"
-edge6_control_mac="98:48:27:e2:e8:c7"
+edge5_control_mac="c0:06:c3:7e:8c:52"
+edge6_control_mac="60:a4:b7:2f:51:41"
 
 edge1_data_mac="98:48:27:e2:bf:82"
 edge2_data_mac="98:48:27:e2:e7:dc"
-edge3_data_mac="98:48:27:de:8f:37"
+edge3_data_mac="c0:06:c3:7e:8d:24"
 edge4_data_mac="98:48:27:e1:39:b9"
-edge5_data_mac="98:48:27:e0:22:92"
-edge6_data_mac="98:48:27:e0:1d:f4"
-
+edge5_data_mac="b8:27:eb:d5:af:dc"
+edge6_data_mac="98:48:27:de:94:fe"
 superedge_control_mac="00:0f:00:14:91:d7"
 superedge_data_mac="00:0f:00:10:10:23"
 
