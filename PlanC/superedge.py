@@ -55,21 +55,21 @@ data_interface="wlan1"
 superedge_control_interface="wlx000f001491d7"
 superedge_data_interface="wlx000f00101023"
 
-#edge1_datapath_id_control=
-#edge2_datapath_id_control=
-#edge3_datapath_id_control=
-#edge4_datapath_id_control=
-#edge5_datapath_id_control=
-#edge6_datapath_id_control=
-#superedge_datapath_id_control=
+edge1_datapath_id_control=1152921504606846977
+edge2_datapath_id_control=1152921504606846978
+edge3_datapath_id_control=1152921504606846979
+edge4_datapath_id_control=1152921504606846980
+edge5_datapath_id_control=1152921504606846981
+edge6_datapath_id_control=1152921504606846982
+superedge_datapath_id_control=1152921504606846984
 
-#edge1_datapath_id_data=
-#edge2_datapath_id_data=
-#edge3_datapath_id_data=
-#edge4_datapath_id_data=
-#edge5_datapath_id_data=
-#edge6_datapath_id_data=
-#superedge_datapath_id_data=
+edge1_datapath_id_data=1152921504606846992
+edge2_datapath_id_data=1152921504606847008
+edge3_datapath_id_data=1152921504606847024
+edge4_datapath_id_data=1152921504606847040
+edge5_datapath_id_data=1152921504606847056
+edge6_datapath_id_data=1152921504606847072
+superedge_datapath_id_data=1152921504606847104
 
 def getDeviceName(datapath):
     if str(edge1_datapath_id_control) == datapath:
