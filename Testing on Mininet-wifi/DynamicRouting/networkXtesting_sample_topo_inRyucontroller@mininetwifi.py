@@ -1,6 +1,5 @@
 # This is Ryu controller program running @ Mininet-wifi for SDNIoTEdge Progect @ NECTEC.
 # written by PPTLT.
-#NetworkX+P'Mink's code
 
 from ryu.base import app_manager
 from ryu.controller import ofp_event
@@ -42,21 +41,23 @@ class node_failure (app_manager.RyuApp):
         self.datapaths = {}
         self.activedataplane = []
         self.edge_list = []
-        self.Weight_edge_list = [2, 2, 2, 1, 2, 1, 3, 1, 4, 3]
-        self.Concave_edge_list = [1, 3, 1, 4, 3, 2, 2, 2, 1, 2,]        
+        self.weight_edge_list = [2, 2, 3, 2, 1, 2, 2]
+        self.concave_edge_list = [1, 3, 3, 1, 4, 3, 1]        
+        self.CPU_edge_list = [2, 1, 2, 2, 2, 3, 4]  
         self.monitor_thread = hub.spawn(self._monitor)
     
-    def add_multi_link_attributes(self, attr1,attr2):
+    def add_multi_link_attributes(self, attr1,attr2, attr3):
         """
         This funtion is to add the multiple link attributes to graph G
         input: G : graph
                 attr1 : link attribute 1
                 attr2 : link attribute 2
+                attr3 : link attribute 3
         output : G
         """
         i = 0
         for (u, v) in self.G.edges():
-            self.G.add_edge(u,v,w=attr1[i],c=attr2[i])
+            self.G.add_edge(u,v,w=attr1[i],c1=attr2[i], c2=attr3[i])
             i = i+1 
         return self.G
 
@@ -101,13 +102,49 @@ class node_failure (app_manager.RyuApp):
         """        
         return max([self.G[path[i]][path[i+1]][attr] for i in range(len(path)-1)])
 
+    def calculate_path_cost_with_weighted_sum(self, path, attr1, attr2):
+        """
+        This function is to find the weighted sum based on two concave matrics
+        : c(e) = ac1(e) + bc2(e)
+        a = (1-c2(e)) / (2-c(e)-c2(e))
+        b = (1-c(e)) / (2-c(e)-c2(e)))
+        Input : G : graph
+                path : path is a list of nodes in the path
+                attr1 : c1 of edges
+                attr2 : c2 of edges
+        output : path_costs
+        """         
+        costs = []       
+        for i in range(len(path) - 1):
+            a = (1- self.G[path[i]][path[i+1]][attr2]) / (2 - self.G[path[i]][path[i+1]][attr1] - self.G[path[i]][path[i+1]][attr2]) 
+            b = (1- self.G[path[i]][path[i+1]][attr1]) / (2 - self.G[path[i]][path[i+1]][attr1] - self.G[path[i]][path[i+1]][attr2]) 
+            costs.append(a * self.G[path[i]][path[i+1]][attr1] + b * self.G[path[i]][path[i+1]][attr2]) 
+        return max(costs)
+
+    def calculate_path_cost_with_concave_function(self, path, attr1, attr2):
+        """
+        This function is to find the path cost based on the concave function
+        : Path_Cost = max{c1(edge), c2(edge)}
+        Input : G : graph
+                path : path is a list of nodes in the path
+                attr1 : c1 of edges
+                attr2 : c2 of edges
+        output : path_cost
+        """                
+        costs = []       
+        for i in range(len(path) - 1):
+            c1 = self.G[path[i]][path[i+1]][attr1]
+            c2 = self.G[path[i]][path[i+1]][attr2]
+            costs.append(max(c1, c2)) 
+        return max(costs)
+        
     def rm_edge_constraint(self,Cons):
         rm_edge_list = []
         for u, v, data in self.G.edges(data=True):
             e = (u,v)
             cost = self.G.get_edge_data(*e)
             #self.logger.info(cost)
-            if cost['c'] >= Cons:
+            if cost['c1'] >= Cons:
                 rm_edge_list.append(e)
                 #self.logger.info(rm_edge_list)    
         self.remove_Edge(rm_edge_list)
@@ -144,12 +181,13 @@ class node_failure (app_manager.RyuApp):
             
             Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')                           
             Opt_path = Shortest_path
+            PathConcave_cost  = self.max_path_cost(Shortest_path, 'c1')                    
             while len(Shortest_path) != 0:
                 path_cost = self.additive_path_cost(Shortest_path, 'w') 
                 #self.logger.info('Path cost - %d', path_cost)
                 if path_cost <= L:
                     """go to concave cost"""
-                    PathConcave_cost  = self.max_path_cost(Shortest_path, 'c')
+                    PathConcave_cost  = self.max_path_cost(Shortest_path, 'c1')                    
                     self.G = self.rm_edge_constraint(PathConcave_cost) # remove all links where the concave link is greater than PathConcave_cost
                 
                     Opt_path = Shortest_path
@@ -158,25 +196,110 @@ class node_failure (app_manager.RyuApp):
                     else:
                         Shortest_path = []                
                 else:
-                    pass 
+                    break 
+        else:
+            self.logger.info('No path from %s to %s', S, D)
+            PathConcave_cost  = 0
+            Opt_path = []
+        return PathConcave_cost, Opt_path
+
+    def Option2_routing(self, S, D, L):
+        """
+        This function is to find the optimal path from S to D with constraint L by combining two concave matrics with weighted sum
+        Input : G : graph
+                S : Source
+                D : Destination
+                L : constraint
+        """
+        if self.has_path(S, D):            
+            Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')                           
+            Opt_path = Shortest_path
+            path_cost_with_weighted_sum  = self.calculate_path_cost_with_weighted_sum(Shortest_path, 'c1', 'c2')
+            return path_cost_with_weighted_sum, Opt_path
+
+            while len(Shortest_path) != 0:
+                path_cost = self.additive_path_cost(Shortest_path, 'w') 
+                #self.logger.info('Path cost - %d', path_cost)
+                if path_cost <= L:
+                    """go to path cost with weighted sum"""
+                    path_cost_with_weighted_sum  = self.calculate_path_cost_with_weighted_sum(Shortest_path, 'c1', 'c2')
+                    self.G = self.rm_edge_constraint(path_cost_with_weighted_sum) # remove all links where the concave link is greater than PathConcave_cost                    
+                    Opt_path = Shortest_path
+                    if self.has_path(S, D):
+                        Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')
+                    else:
+                        Shortest_path = []                
+                else:
+                    break 
         else:
             self.logger.info('No path from %s to %s', S, D)
             Opt_path = []
-        return Opt_path
+            path_cost_with_weighted_sum  = 0
+        return path_cost_with_weighted_sum, Opt_path
 
-    def findingOptimalPath(self, source, dest, L):
-        current_time = time.asctime(time.localtime(time.time()))  
-        self.G = nx.Graph()
-        self.G.add_edges_from(self.edge_list)
-        self.G = self.add_multi_link_attributes(self.Weight_edge_list, self.Concave_edge_list)
-        optimal_path = self.Optimum_prun_based_routing(source, dest, L)
-        self.logger.info("%s Source %s Destination %s Constraint %s", current_time, source, dest, L)
-        self.logger.info("Optimal path - %s", optimal_path)
+    def Option3_routing(self, S, D, L):
+        """
+        This function is to find the optimal path from S to D with constraint L by combining two concave matrics with concave function
+        Input : G : graph
+                S : Source
+                D : Destination
+                L : constraint
+        """
+        if self.has_path(S, D):            
+            Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')                           
+            Opt_path = Shortest_path
+            path_cost_with_concave_function  = self.calculate_path_cost_with_concave_function(Shortest_path, 'c1', 'c2')
+            return path_cost_with_concave_function, Opt_path
+            while len(Shortest_path) != 0:
+                path_cost = self.additive_path_cost(Shortest_path, 'w') 
+                #self.logger.info('Path cost - %d', path_cost)
+                if path_cost <= L:
+                    """go to path cost with weighted sum"""
+                    path_cost_with_concave_function  = self.calculate_path_cost_with_concave_function(Shortest_path, 'c1', 'c2')
+                    self.G = self.rm_edge_constraint(path_cost_with_concave_function) # remove all links where the concave link is greater than PathConcave_cost                    
+                    Opt_path = Shortest_path
+                    if self.has_path(S, D):
+                        Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')
+                    else:
+                        Shortest_path = []                
+                else:
+                    break 
+        else:
+            self.logger.info('No path from %s to %s', S, D)
+            Opt_path = []
+            path_cost_with_concave_function = 0
+        return path_cost_with_concave_function, Opt_path
     
     def _monitor(self):     
         while True:   
             if len(self.datapaths.keys()) == 7:      
-                self.findingOptimalPath('edge4', 'superedge', 5)
+                current_time = time.asctime(time.localtime(time.time()))  
+                source = 'S'
+                dest = 'D'
+                L = 4.5                
+                self.logger.info("%s Source %s Destination %s Constraint %s", current_time, source, dest, L)            
+
+                self.G = nx.Graph()
+                self.G.add_edges_from(self.edge_list) 
+                self.G = self.add_multi_link_attributes(self.weight_edge_list, self.concave_edge_list, self.CPU_edge_list)   
+                self.logger.info("Option 1 - Discard one of the concave metrics")                            
+                optimal_cost, optimal_path = self.Optimum_prun_based_routing(source, dest, L)
+                self.logger.info("Path cost - %s, Optimal path - %s", optimal_cost, optimal_path)
+
+                self.G = nx.Graph()
+                self.G.add_edges_from(self.edge_list) 
+                self.G = self.add_multi_link_attributes(self.weight_edge_list, self.concave_edge_list, self.CPU_edge_list)   
+                self.logger.info("Option 2 - Combine two concave metrics with weighted sum")            
+                optimal_cost, optimal_path = self.Option2_routing(source, dest, L) 
+                self.logger.info("Path cost - %s, Optimal path - %s", optimal_cost, optimal_path)
+
+                self.G = nx.Graph()
+                self.G.add_edges_from(self.edge_list) 
+                self.G = self.add_multi_link_attributes(self.weight_edge_list, self.concave_edge_list, self.CPU_edge_list)   
+                self.logger.info("Option 3 - Combine two concave metric with concave function")            
+                optimal_cost, optimal_path = self.Option3_routing(source, dest, L)
+                self.logger.info("Path cost - %s, Optimal path - %s", optimal_cost, optimal_path)
+
             hub.sleep(10)
 
     def add_flow(self, datapath, table, priority, match, actions, hard):
@@ -754,12 +877,11 @@ class node_failure (app_manager.RyuApp):
                 self.logger.info(
                     "Current Conneced Switches to RYU controller are %s", self.datapaths.keys())
                 if len(self.datapaths.keys()) == 7:
-                    self.edge_list = [('edge1', 'superedge'), ('edge2', 'superedge'), 
-                    ('edge3', 'superedge'), ('edge1', 'edge2'), ('edge2', 'edge3'), 
-                    ('edge4', 'edge1'), ('edge5', 'edge2'), ('edge6', 'edge3'), 
-                    ('edge4', 'edge5'), ('edge5', 'edge6')]
-                    self.G.add_edges_from(self.edge_list)
-                    self.G = self.add_multi_link_attributes(self.Weight_edge_list, self.Concave_edge_list)
+                    #self.edge_list = [('edge1', 'superedge'), ('edge2', 'superedge'), 
+                    #('edge3', 'superedge'), ('edge1', 'edge2'), ('edge2', 'edge3'), 
+                    #('edge4', 'edge1'), ('edge5', 'edge2'), ('edge6', 'edge3'), 
+                    #('edge4', 'edge5'), ('edge5', 'edge6')]
+                    self.edge_list = [('S','B'), ('S','A'), ('S','E'), ('B','A'), ('B','D'), ('A','D'), ('E','D')]
         elif ev.state == DEAD_DISPATCHER:
             if datapath.id in self.datapaths:
                 self.logger.debug('unregister datapath: %016x', datapath.id)
