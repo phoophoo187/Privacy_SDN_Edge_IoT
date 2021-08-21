@@ -1,0 +1,988 @@
+# This is Ryu controller program running @ Mininet-wifi for SDNIoTEdge Progect @ NECTEC.
+# written by PPTLT.
+
+from ryu.base import app_manager
+from ryu.controller import ofp_event
+from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER, DEAD_DISPATCHER
+from ryu.controller.handler import set_ev_cls
+from ryu.ofproto import ofproto_v1_3
+from ryu.ofproto.ofproto_v1_3_parser import NXActionRegLoad2
+from ryu.lib import hub
+from ryu.ofproto import nicira_ext
+import networkx as nx
+import matplotlib.pyplot as plt
+import time
+import os
+from prettytable import PrettyTable
+import socket
+
+r1ip = "192.168.1.1"
+r2ip = "192.168.1.2"
+r3ip = "192.168.1.3"
+r4ip = "192.168.1.4"
+r5ip = "192.168.1.5"
+r6ip = "192.168.1.6"
+gw1ip= "192.168.1.8"
+
+gw1mac = "00:00:00:00:00:70"
+gw2mac = "00:00:00:00:00:80"
+r1mac = "00:00:00:00:00:10"
+r2mac = "00:00:00:00:00:20"
+r3mac = "00:00:00:00:00:30"
+r4mac = "00:00:00:00:00:40"
+r5mac = "00:00:00:00:00:50"
+r6mac = "00:00:00:00:00:60"
+
+socket_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+'''
+    host = ip address of h1 (ryu controller)
+'''
+host = '10.0.0.101'
+port = 12345
+
+try:
+    socket_server.bind((host, port))
+except socket.error as e:
+    print(e)
+print('Waiting for connection. Server Started')
+
+socket_server.listen()
+
+class node_failure (app_manager.RyuApp):
+    OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
+
+    def __init__(self, *args, **kwargs):
+        super(node_failure, self).__init__(*args, **kwargs)
+        self.switch_table = {}
+        self.G = nx.Graph()
+        self.datapaths = {}
+        self.activedataplane = []
+        self.edge_list = []
+        '''
+            weight of every edge is 1 because hop count between edges is one.            
+        '''
+        self.weight_edge_list = {('edge1', 'superedge'): 1, ('edge2', 'superedge'): 1, 
+        ('edge3', 'superedge'): 1, ('edge1', 'edge2'): 1, ('edge2', 'edge3'): 1, 
+        ('edge4', 'edge1'):1, ('edge5', 'edge2'):1, ('edge6', 'edge3'):1, 
+        ('edge4', 'edge5'):1, ('edge5', 'edge6'):1}
+        self.concave_edge_list = {('edge1', 'superedge'): 1, ('edge2', 'superedge'): 3, 
+        ('edge3', 'superedge'): 3, ('edge1', 'edge2'): 1, ('edge2', 'edge3'): 4, 
+        ('edge4', 'edge1'):3, ('edge5', 'edge2'):1, ('edge6', 'edge3'):1, 
+        ('edge4', 'edge5'):2, ('edge5', 'edge6'):3}      
+        self.CPU_edge_list = {('edge1', 'superedge'): 2, ('edge2', 'superedge'): 1,
+        ('edge3', 'superedge'): 2, ('edge1', 'edge2'): 2, ('edge2', 'edge3'): 2, 
+        ('edge4', 'edge1'):3, ('edge5', 'edge2'):4, ('edge6', 'edge3'):4, 
+        ('edge4', 'edge5'):1, ('edge5', 'edge6'):1}
+        #self.monitor_thread = hub.spawn(self._monitor)
+        self.monitor_client_conn = hub.spawn(self._monitor_client_conn)
+
+    def _monitor_client_conn(self):
+        while True:
+            m_conn, addr = socket_server.accept()            
+            self.logger.debug('Connected by', addr)
+            while True:
+                encoded_data = m_conn.recv(1024)
+                if not encoded_data:
+                    break
+                else: 
+                    data = encoded_data.decode()                                   
+                    if '$' not in data:                    
+                       if 'edge1' == data or 'edge2' == data or 'edge3' == data or 'edge4' == data or 'edge5' == data or 'edge6' == data : 
+                            m_conn.sendall((data + ' is connected').encode())                                        
+                            self.logger.debug('%s is connected', data) 
+                    else:                        
+                        formatted_data = data.split('$')
+                        self.logger.info(formatted_data)
+            m_conn.close()             
+                
+    def checkKey(self, dict, key):      
+        if key in dict.keys():
+            return True
+        else:
+            return False
+    
+    def add_multi_link_attributes(self, attr1,attr2, attr3):
+        """
+        This funtion is to add the multiple link attributes to graph G
+        input: G : graph
+                attr1 : link attribute 1
+                attr2 : link attribute 2
+                attr3 : link attribute 3
+        output : G
+        """
+        i = 0
+        for (u, v) in self.G.edges():
+            if self.checkKey(attr1, (u,v)) and self.checkKey(attr2, (u,v)) and self.checkKey(attr3, (u,v)):
+                self.G.add_edge(u,v,w=attr1[(u,v)],c1=attr2[(u,v)], c2= attr3[(u,v)])
+            elif self.checkKey(attr1, (v,u)) and self.checkKey(attr2, (v,u)) and self.checkKey(attr3, (v,u)):
+                self.G.add_edge(u,v,w=attr1[(v,u)],c1=attr2[(v,u)], c2= attr3[(v,u)])
+            else:
+                if not self.checkKey(attr1, (u,v)) and not self.checkKey(attr1, (v,u)):
+                    raise Exception("Weight edge list has missing value for ", u, v)
+                if not self.checkKey(attr2, (u,v)) and not self.checkKey(attr2, (v,u)):
+                    raise Exception("Concave edge list has missing value for ", u, v)
+                if not self.checkKey(attr3, (u,v)) and not self.checkKey(attr3, (v,u)):
+                    raise Exception("CPU edge has list missing value for ", u, v)
+        i = i+1  
+        return self.G
+
+    def remove_Edge(self, rm_edge_list):
+        """
+        This function is to remove edges in the rm_edge_list from G
+        """
+        self.G.remove_edges_from(rm_edge_list)
+        self.G.edges()
+        return self.G
+
+    def compare_path(self, path1,path2):
+        
+        if collections.Counter(path1) == collections.Counter(path2):
+            self.logger.info("The lists l1 and l2 are the same") 
+            flag = True
+        else: 
+            self.logger.info("The lists l1 and l2 are not the same") 
+            flag = False
+        return flag
+
+    def additive_path_cost(self, path, attr):
+        """
+        This function is to find the path cost based on the additive costs
+        : Path_Cost = sum_{edges in the path}attr[edge]
+        Input : G : graph
+                path : path is a list of nodes in the path
+                attr : attribute of edges
+        output : path_cost
+        """           
+        return sum([self.G[path[i]][path[i+1]][attr] for i in range(len(path)-1)])
+
+    ## Calculate concave path cost from attr
+    def max_path_cost(self, path, attr):
+        """
+        This function is to find the path cost based on the additive costs
+        : Path_Cost = max{edges in the path}attr[edge]
+        Input : G : graph
+                path : path is a list of nodes in the path
+                attr : attribute of edges
+        output : path_cost
+        """        
+        return max([self.G[path[i]][path[i+1]][attr] for i in range(len(path)-1)])
+
+    def calculate_path_cost_with_weighted_sum(self, path, attr1, attr2):
+        """
+        This function is to find the weighted sum based on two concave matrics
+        : c(e) = ac1(e) + bc2(e)
+        a = (1-c2(e)) / (2-c(e)-c2(e))
+        b = (1-c(e)) / (2-c(e)-c2(e)))
+        Input : G : graph
+                path : path is a list of nodes in the path
+                attr1 : c1 of edges
+                attr2 : c2 of edges
+        output : path_costs
+        """         
+        costs = []       
+        for i in range(len(path) - 1):
+            a = (1- self.G[path[i]][path[i+1]][attr2]) / (2 - self.G[path[i]][path[i+1]][attr1] - self.G[path[i]][path[i+1]][attr2]) 
+            b = (1- self.G[path[i]][path[i+1]][attr1]) / (2 - self.G[path[i]][path[i+1]][attr1] - self.G[path[i]][path[i+1]][attr2]) 
+            costs.append(a * self.G[path[i]][path[i+1]][attr1] + b * self.G[path[i]][path[i+1]][attr2]) 
+        return max(costs)
+
+    def calculate_path_cost_with_concave_function(self, path, attr1, attr2):
+        """
+        This function is to find the path cost based on the concave function
+        : Path_Cost = max{c1(edge), c2(edge)}
+        Input : G : graph
+                path : path is a list of nodes in the path
+                attr1 : c1 of edges
+                attr2 : c2 of edges
+        output : path_cost
+        """                
+        c1 = max([self.G[path[i]][path[i+1]][attr1] for i in range(len(path)-1)])
+        c2 = max([self.G[path[i]][path[i+1]][attr2] for i in range(len(path)-1)])        
+        return max([c1,c2])
+        
+    def rm_edge_constraint(self,Cons):
+        rm_edge_list = []
+        for u, v, data in self.G.edges(data=True):
+            e = (u,v)
+            cost = self.G.get_edge_data(*e)
+            #self.logger.info(cost)
+            if cost['c1'] >= Cons:
+                rm_edge_list.append(e)
+                #self.logger.info(rm_edge_list)    
+        self.remove_Edge(rm_edge_list)
+        return self.G
+
+    def has_path(self, source, target):
+        """Return True if G has a path from source to target, False otherwise.
+
+        Parameters
+        ----------
+        G : NetworkX graph
+
+        source : node
+        Starting node for path
+
+        target : node
+        Ending node for path
+        """
+        try:
+            sp = nx.shortest_path(self.G, source, target)
+        except nx.NetworkXNoPath:
+            return False
+        return True
+
+    def Optimum_prun_based_routing(self, S, D, L):
+        """
+        This function is to find the optimal path from S to D with constraint L 
+        Input : G : graph
+                S : Source
+                D : Destination
+                L : constraint
+        """
+        if self.has_path(S, D):
+            
+            Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')                           
+            Opt_path = Shortest_path
+            PathConcave_cost  = self.max_path_cost(Shortest_path, 'c1')                    
+            while len(Shortest_path) != 0:
+                path_cost = self.additive_path_cost(Shortest_path, 'w')                                 
+                if path_cost <= L:
+                    """go to concave cost"""
+                    PathConcave_cost  = self.max_path_cost(Shortest_path, 'c1')                    
+                    self.G = self.rm_edge_constraint(PathConcave_cost) # remove all links where the concave link is greater than PathConcave_cost
+                
+                    Opt_path = Shortest_path
+                    if self.has_path(S, D):
+                        Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')
+                    else:
+                        Shortest_path = []                
+                else:
+                    break 
+        else:
+            self.logger.info('No path from %s to %s', S, D)
+            PathConcave_cost  = 0
+            Opt_path = []
+        return PathConcave_cost, Opt_path
+
+    def Option2_routing(self, S, D, L):
+        """
+        This function is to find the optimal path from S to D with constraint L by combining two concave matrics with weighted sum
+        Input : G : graph
+                S : Source
+                D : Destination
+                L : constraint
+        """
+        if self.has_path(S, D):            
+            Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')                           
+            Opt_path = Shortest_path
+            path_cost_with_weighted_sum  = self.calculate_path_cost_with_weighted_sum(Shortest_path, 'c1', 'c2')
+            return path_cost_with_weighted_sum, Opt_path
+
+            while len(Shortest_path) != 0:
+                path_cost = self.additive_path_cost(Shortest_path, 'w') 
+                #self.logger.info('Path cost - %d', path_cost)
+                if path_cost <= L:
+                    """go to path cost with weighted sum"""
+                    path_cost_with_weighted_sum  = self.calculate_path_cost_with_weighted_sum(Shortest_path, 'c1', 'c2')
+                    self.G = self.rm_edge_constraint(path_cost_with_weighted_sum) # remove all links where the concave link is greater than PathConcave_cost                    
+                    Opt_path = Shortest_path
+                    if self.has_path(S, D):
+                        Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')
+                    else:
+                        Shortest_path = []                
+                else:
+                    break 
+        else:
+            self.logger.info('No path from %s to %s', S, D)
+            Opt_path = []
+            path_cost_with_weighted_sum  = 0
+        return path_cost_with_weighted_sum, Opt_path
+
+    def Option3_routing(self, S, D, L):
+        """
+        This function is to find the optimal path from S to D with constraint L by combining two concave matrics with concave function
+        Input : G : graph
+                S : Source
+                D : Destination
+                L : constraint
+        """
+        if self.has_path(S, D):            
+            Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')                           
+            Opt_path = Shortest_path
+            path_cost_with_concave_function  = self.calculate_path_cost_with_concave_function(Shortest_path, 'c1', 'c2')
+            return path_cost_with_concave_function, Opt_path
+            while len(Shortest_path) != 0:
+                path_cost = self.additive_path_cost(Shortest_path, 'w') 
+                #self.logger.info('Path cost - %d', path_cost)
+                if path_cost <= L:
+                    """go to path cost with weighted sum"""
+                    path_cost_with_concave_function  = self.calculate_path_cost_with_concave_function(Shortest_path, 'c1', 'c2')
+                    self.G = self.rm_edge_constraint(path_cost_with_concave_function) # remove all links where the concave link is greater than PathConcave_cost                    
+                    Opt_path = Shortest_path
+                    if self.has_path(S, D):
+                        Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')
+                    else:
+                        Shortest_path = []                
+                else:
+                    break 
+        else:
+            self.logger.info('No path from %s to %s', S, D)
+            Opt_path = []
+            path_cost_with_concave_function = 0
+        return path_cost_with_concave_function, Opt_path
+    
+    def edge_monitor_routing(self, source, dest, L):                       
+        self.G = nx.Graph()
+        self.G.add_edges_from(self.edge_list) 
+        self.G = self.add_multi_link_attributes(self.weight_edge_list, self.concave_edge_list, self.CPU_edge_list)                                   
+        optimal_cost, optimal_path = self.Optimum_prun_based_routing(source, dest, L)
+        option1_row = ['1', source, dest, optimal_path]
+        
+        self.G = nx.Graph()
+        self.G.add_edges_from(self.edge_list) 
+        self.G = self.add_multi_link_attributes(self.weight_edge_list, self.concave_edge_list, self.CPU_edge_list)                                 
+        optimal_cost, optimal_path = self.Option2_routing(source, dest, L) 
+        option2_row = ['2', source, dest, optimal_path]
+
+        self.G = nx.Graph()
+        self.G.add_edges_from(self.edge_list) 
+        self.G = self.add_multi_link_attributes(self.weight_edge_list, self.concave_edge_list, self.CPU_edge_list)                    
+        optimal_cost, optimal_path = self.Option3_routing(source, dest, L)
+        option3_row = ['3', source, dest, optimal_path]
+        
+        return option1_row, option2_row, option3_row
+        
+    def _monitor(self):     
+        while True:   
+            if len(self.datapaths.keys()) == 7:       
+                current_time = time.asctime(time.localtime(time.time()))          
+                L = 5
+                self.logger.info("%s, Constraint %s", current_time, L)   
+                network_table = PrettyTable(['link', 'weight', 'c1', 'c2'])
+                for i in range(len(self.edge_list)):
+                    network_table.add_row([self.edge_list[i], self.weight_edge_list[self.edge_list[i]], self.concave_edge_list[self.edge_list[i]], self.CPU_edge_list[self.edge_list[i]]])
+                print(network_table)
+
+                self.logger.info('Option 1 - Discard one of the concave matrics')
+                self.logger.info('Option 2 - Combine two concave metrics with weighted sum')
+                self.logger.info('Option 3 - Combine two concave metrics with concave function')
+                routing_table = PrettyTable(['Option', 'source', 'dest', 'optimal path'])                       
+                e1o1, e1o2, e1o3 = self.edge_monitor_routing('edge1', 'superedge', L)
+                e2o1, e2o2, e2o3 = self.edge_monitor_routing('edge2', 'superedge', L)
+                e3o1, e3o2, e3o3 = self.edge_monitor_routing('edge3', 'superedge', L)
+                e4o1, e4o2, e4o3 = self.edge_monitor_routing('edge4', 'superedge', L)
+                e5o1, e5o2, e5o3 = self.edge_monitor_routing('edge5', 'superedge', L)
+                e6o1, e6o2, e6o3 = self.edge_monitor_routing('edge6', 'superedge', L)                
+                
+                routing_table.add_row(e1o1)
+                routing_table.add_row(e2o1)
+                routing_table.add_row(e3o1)
+                routing_table.add_row(e4o1)
+                routing_table.add_row(e5o1)
+                routing_table.add_row(e6o1)
+
+                routing_table.add_row(e1o2)
+                routing_table.add_row(e2o2)
+                routing_table.add_row(e3o2)
+                routing_table.add_row(e4o2)
+                routing_table.add_row(e5o2)
+                routing_table.add_row(e6o2)
+
+                routing_table.add_row(e1o3)
+                routing_table.add_row(e2o3)
+                routing_table.add_row(e3o3)
+                routing_table.add_row(e4o3)
+                routing_table.add_row(e5o3)
+                routing_table.add_row(e6o3)
+
+                print(routing_table)
+            hub.sleep(10)
+
+    def add_flow(self, datapath, table, priority, match, actions, hard):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+        inst = [parser.OFPInstructionActions(
+            ofproto.OFPIT_APPLY_ACTIONS, actions)]
+        mod = parser.OFPFlowMod(datapath=datapath, table_id=table, command=ofproto.OFPFC_ADD,
+                                priority=priority, match=match, instructions=inst, hard_timeout=hard)
+        datapath.send_msg(mod)
+
+    def add_gototable(self, datapath, table, n, priority, match, hard): 
+        parser = datapath.ofproto_parser
+        ofproto = datapath.ofproto
+        inst = [parser.OFPInstructionGotoTable(n)]
+        mod = parser.OFPFlowMod(datapath=datapath, table_id=table, command=ofproto.OFPFC_ADD,
+                                priority=priority, match=match, hard_timeout=hard, instructions=inst)
+        datapath.send_msg(mod)
+
+    @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
+    def switch_features_handler(self, ev):
+        dp = ev.msg.datapath
+        datapath = ev.msg.datapath
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+        local = datapath.ofproto.OFPP_LOCAL
+
+        self.logger.info("Switch_ID %s is connected,1", dp.id)
+
+        if dp.id == 1:
+            self.logger.info("MeshNode_1 is connected")
+# Relay to superedge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r1mac, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r1mac), parser.OFPActionSetField(
+                eth_dst=gw1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# Relay to edge2
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r1mac, arp_tpa=r2ip)
+            actions = [parser.OFPActionSetField(eth_src=r1mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# Relay To edge3
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r1mac, arp_tpa=r3ip)
+            actions = [parser.OFPActionSetField(eth_src=r1mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay To edge4
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r1mac, arp_tpa=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=r1mac), parser.OFPActionSetField(
+                eth_dst=r4mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r1mac, ipv4_dst=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=r1mac), parser.OFPActionSetField(
+                eth_dst=r4mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+
+# Connect edge3
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=r1mac, arp_tpa=r3ip)
+            actions = [parser.OFPActionSetField(eth_src=r1mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r1mac, ipv4_dst=r3ip)
+            actions = [parser.OFPActionSetField(eth_src=r1mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+
+#################################
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst="FF:FF:FF:FF:FF:FF", arp_tpa=r1ip)
+            self.add_flow(datapath, 0, 170, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r1ip, arp_tpa=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r1ip, ipv4_dst=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r1ip, arp_tpa=r2ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r1ip, ipv4_dst=r2ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r1ip, arp_tpa=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r1ip, ipv4_dst=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r2ip, arp_tpa=r3ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r2ip, ipv4_dst=r3ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+# NewRule
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r1mac, eth_dst=gw1mac, ipv4_src=r2ip, ipv4_dst=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r1mac, eth_dst=r4mac, ipv4_src=gw1ip, ipv4_dst=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+
+        if dp.id == 2:
+            self.logger.info("MeshNode_2 is connected")
+
+# Relay To edge3
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r2mac, arp_tpa=r3ip)
+            actions = [parser.OFPActionSetField(eth_src=r2mac), parser.OFPActionSetField(
+                eth_dst=r3mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay To edge5
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r2mac, arp_tpa=r5ip)
+            actions = [parser.OFPActionSetField(eth_src=r2mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay To edge1
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r2mac, arp_tpa=r1ip)
+            actions = [parser.OFPActionSetField(eth_src=r2mac), parser.OFPActionSetField(
+                eth_dst=r1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# Relay to superedge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r2mac, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r2mac), parser.OFPActionSetField(
+                eth_dst=gw1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+###########################################################################################
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst="FF:FF:FF:FF:FF:FF", arp_tpa=r2ip)
+            self.add_flow(datapath, 0, 170, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r2ip, arp_tpa=r3ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r2ip, ipv4_dst=r3ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r2ip, arp_tpa=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r2ip, ipv4_dst=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r1ip, arp_tpa=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r1ip, ipv4_dst=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+           
+        if dp.id == 3:
+            self.logger.info("MeshNode_3 is connected")
+
+# Relay To superedge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r3mac, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r3mac), parser.OFPActionSetField(
+                eth_dst=gw1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# Relay To edge1
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r3mac, arp_tpa=r1ip)
+            actions = [parser.OFPActionSetField(eth_src=r3mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# Relay To edge2
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r3mac, arp_tpa=r2ip)
+            actions = [parser.OFPActionSetField(eth_src=r3mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay To edge6
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r3mac, arp_tpa=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=r3mac), parser.OFPActionSetField(
+                eth_dst=r6mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# connect to edge1
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=r3mac, arp_tpa=r1ip)
+            actions = [parser.OFPActionSetField(eth_src=r3mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r3mac, ipv4_dst=r1ip)
+            actions = [parser.OFPActionSetField(eth_src=r3mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+# connect to edge3
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst="FF:FF:FF:FF:FF:FF", arp_tpa=r3ip)
+            self.add_flow(datapath, 0, 170, match, [], 0)
+
+           
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r3ip, ipv4_dst=r2ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r3ip, arp_tpa=r2ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r2ip, arp_tpa=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r2ip, arp_tpa=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r2ip, ipv4_dst=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r2ip, ipv4_dst=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+        if dp.id == 7:
+            self.logger.info("SuperEdge is connected")
+
+# edge4
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=gw1mac, arp_tpa=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=gw1mac), parser.OFPActionSetField(
+                eth_dst=r1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=gw1mac, ipv4_dst=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=gw1mac), parser.OFPActionSetField(
+                eth_dst=r1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+
+# edge5
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=gw1mac, arp_tpa=r5ip)
+            actions = [parser.OFPActionSetField(eth_src=gw1mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=gw1mac, ipv4_dst=r5ip)
+            actions = [parser.OFPActionSetField(eth_src=gw1mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+# edge6
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=gw1mac, arp_tpa=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=gw1mac), parser.OFPActionSetField(
+                eth_dst=r3mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=gw1mac, ipv4_dst=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=gw1mac), parser.OFPActionSetField(
+                eth_dst=r3mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+
+
+
+# To Prevent Looping
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst="FF:FF:FF:FF:FF:FF", arp_tpa=gw1ip)
+            self.add_flow(datapath, 0, 170, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=gw1ip, ipv4_dst=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=gw1ip, arp_tpa=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+
+
+
+# Not to relay other packets
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r1ip, ipv4_dst=r2ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r1ip, ipv4_dst=r3ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+        if dp.id == 4:
+            self.logger.info("MeshNode_4 is connected")
+# Relay to SuperEdge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r4mac, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r4mac), parser.OFPActionSetField(
+                eth_dst=r1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay to edge5
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r4mac, arp_tpa=r5ip)
+            actions = [parser.OFPActionSetField(eth_src=r4mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay To edge6
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r4mac, arp_tpa=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=r4mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Connect Raspi6
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=r4mac, arp_spa=r4ip, arp_tpa=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=r4mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r4mac, ipv4_dst=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=r4mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+# Connect SuperEdge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=r4mac, arp_spa=r4ip, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r4mac), parser.OFPActionSetField(
+                eth_dst=r1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r4mac, ipv4_dst=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r4mac), parser.OFPActionSetField(
+                eth_dst=r1mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+# To Prevent Duplicate Problem
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst="FF:FF:FF:FF:FF:FF", arp_tpa=r4ip)
+            self.add_flow(datapath, 0, 170, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r4ip, arp_tpa=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r4ip, ipv4_dst=r1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r4ip, arp_tpa=r5ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r4ip, ipv4_dst=r5ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r5ip, arp_tpa=r6ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r5ip, ipv4_dst=r6ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+        if dp.id == 5:
+            self.logger.info("MeshNode_5 is connected")
+
+# Relay To edge 3
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r5mac, arp_tpa=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=r5mac), parser.OFPActionSetField(
+                eth_dst=r6mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay To edge 4
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r5mac, arp_tpa=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=r5mac), parser.OFPActionSetField(
+                eth_dst=r4mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Relay To edge1
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r5mac, arp_tpa=r6ip)
+            actions = [parser.OFPActionSetField(eth_src=r5mac), parser.OFPActionSetField(
+                eth_dst=r6mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# Relay to  superedge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r5mac, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r5mac), parser.OFPActionSetField(
+                eth_dst=r4mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+
+# Connect superedge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=r5mac, arp_spa=r5ip, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r5mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r5mac, ipv4_dst=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r5mac), parser.OFPActionSetField(
+                eth_dst=r2mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+# To Prevent Duplicate Problem
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst="FF:FF:FF:FF:FF:FF", arp_tpa=r5ip)
+            self.add_flow(datapath, 0, 170, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r5ip, arp_tpa=r6ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r5ip, ipv4_dst=r6ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r5ip, arp_tpa=r2ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r5ip, ipv4_dst=r2ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r5ip, arp_tpa=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r5ip, ipv4_dst=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r4ip, arp_tpa=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+           
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r4ip, ipv4_dst=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+           
+
+        if dp.id == 6:
+            self.logger.info("MeshNode_6 is connected")
+# Relay To edge6
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r6mac, arp_tpa=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=r6mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# Relay To edge5
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst=r6mac, arp_tpa=r5ip)
+            actions = [parser.OFPActionSetField(eth_src=r6mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 164, match, actions, 0)
+# superedge
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=r6mac, arp_spa=r6ip, arp_tpa=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r6mac), parser.OFPActionSetField(
+                eth_dst=r3mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r6mac, ipv4_dst=gw1ip)
+            actions = [parser.OFPActionSetField(eth_src=r6mac), parser.OFPActionSetField(
+                eth_dst=r3mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 160, match, actions, 0)
+
+# edge4
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_src=r6mac, arp_spa=r6ip, arp_tpa=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=r6mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, eth_src=r6mac, ipv4_dst=r4ip)
+            actions = [parser.OFPActionSetField(eth_src=r6mac), parser.OFPActionSetField(
+                eth_dst=r5mac), parser.OFPActionOutput(datapath.ofproto.OFPP_IN_PORT)]
+            self.add_flow(datapath, 0, 150, match, actions, 0)
+#########################
+
+# To Prevent Duplicate
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, eth_dst="FF:FF:FF:FF:FF:FF", arp_tpa=r6ip)
+            self.add_flow(datapath, 0, 170, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r6ip, ipv4_dst=r5ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r6ip, arp_tpa=r5ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r5ip, arp_tpa=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0806, arp_spa=r5ip, arp_tpa=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r5ip, ipv4_dst=r4ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+            match = parser.OFPMatch(
+                in_port=1, eth_type=0x0800, ipv4_src=r5ip, ipv4_dst=gw1ip)
+            self.add_flow(datapath, 0, 165, match, [], 0)
+
+    @set_ev_cls(ofp_event.EventOFPStateChange, [MAIN_DISPATCHER, DEAD_DISPATCHER])
+    def _state_change_handler(self, ev):
+        current_time = time.asctime(time.localtime(time.time()))
+        datapath = ev.datapath
+        if ev.state == MAIN_DISPATCHER:
+            if datapath.id not in self.datapaths:
+                self.logger.debug('register datapath: %016x', datapath.id)                
+                self.logger.info("(Switch ID %s),IP address is connected %s in %s,1",
+                                 datapath.id, datapath.address, current_time)
+                self.datapaths[datapath.id] = datapath
+                self.logger.info(
+                    "Current Conneced Switches to RYU controller are %s", self.datapaths.keys())
+                if len(self.datapaths.keys()) == 7:
+                    self.edge_list = [('edge1', 'superedge'), ('edge2', 'superedge'), 
+                    ('edge3', 'superedge'), ('edge1', 'edge2'), ('edge2', 'edge3'), 
+                    ('edge4', 'edge1'), ('edge5', 'edge2'), ('edge6', 'edge3'), 
+                    ('edge4', 'edge5'), ('edge5', 'edge6')]
+        elif ev.state == DEAD_DISPATCHER:
+            if datapath.id in self.datapaths:
+                self.logger.debug('unregister datapath: %016x', datapath.id)
+                self.logger.info("(Switch ID %s),IP address is leaved %s in %s,0",
+                                 datapath.id, datapath.address, current_time)
+                del self.datapaths[datapath.id]
+                self.logger.info(
+                    "Current Conneced Switches to RYU controller are %s", self.datapaths.keys())
+
