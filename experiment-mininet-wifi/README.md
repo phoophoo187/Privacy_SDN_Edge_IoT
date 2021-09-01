@@ -59,3 +59,8 @@ Run the command below to oper terminal in the h1.
 - **mininet-wifi>** xterm h1 
 <br> the new xterm window of **node:h1** is opened. At the prompt run ryuAtSuperEdge.py
 - #python3 ryuAtSuperEdge.py
+
+
+
+## Interesting links
+SDN fun: https://www.grotto-networking.com/SDNfun.html
