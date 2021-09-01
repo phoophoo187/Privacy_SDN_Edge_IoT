@@ -1,0 +1,133 @@
+{
+    "directed": false,
+    "multigraph": false,
+    "graph": {
+        "name": " ExpermentNetwork",
+        "desc": "A network setting for an experiment with Mininet."
+    },
+    "nodes": [
+        {
+            "name": "S",
+            "ip": "192.168.1.10",
+            "mac": "00:00:00:00:00:10",
+            "y": 50,
+            "x": 0,
+            "type": "host",
+            "id": "S"
+        },
+        {
+            "name": "B",
+            "ip": "192.168.1.21",
+            "mac": "00:00:00:00:00:21",
+            "y": 100,
+            "x": 50,
+            "type": "host",
+            "id": "B"
+        },
+        {
+            "name": "A",
+            "ip": "192.168.1.22",
+            "mac": "00:00:00:00:00:22",
+            "y": 50,
+            "x": 50,
+            "type": "host",
+            "id": "A"
+        },
+        {
+            "name": "E",
+            "ip": "192.16.1.23",
+            "mac": "00:00:00:00:00:23",
+            "y": 0,
+            "x": 50,
+            "type": "host",
+            "id": "E"
+        },
+        {
+            "name": "D",
+            "ip":"192.168.1.24",
+            "y": 50,
+            "x": 100,
+            "type": "host",
+            "id": "D"
+        }
+    ],
+    "links": [
+        {
+            "source": "S",
+            "capacity": 40,
+            "weight": 2,
+            "target": "B",
+            "cost": 0,
+            "c1": 1,
+            "des_c1": "Cost Occupied_BW",
+            "c2": 0,
+            "des_c2": "Cost CPU_usage"
+        },
+        {
+            "source": "S",
+            "capacity": 40,
+            "weight": 2,
+            "target": "A",
+            "cost": 0,
+            "c1": 3,
+            "des_c1": "Cost Occupied_BW",
+            "c2": 0,
+            "des_c2": "Cost CPU_usage"
+        },
+        {
+            "source": "S",
+            "capacity": 40,
+            "weight": 3,
+            "target": "E",
+            "cost": 0,
+            "c1": 3,
+            "des_c1": "Cost Occupied_BW",
+            "c2": 0,
+            "des_c2": "Cost CPU_usage"
+        },
+        {
+            "source": "B",
+            "capacity": 40,
+            "weight": 1,
+            "target": "D",
+            "cost": 0,
+            "c1": 4,
+            "des_c1": "Cost Occupied_BW",
+            "c2": 0,
+            "des_c2": "Cost CPU_usage"
+        },
+        {
+            "source": "A",
+            "capacity": 40,
+            "weight": 2,
+            "target": "D",
+            "cost": 0,
+            "c1": 3,
+            "des_c1": "Cost Occupied_BW",
+            "c2": 0,
+            "des_c2": "Cost CPU_usage"
+        },
+        {
+            "source": "E",
+            "capacity": 40,
+            "weight": 2,
+            "target": "D",
+            "cost": 0,
+            "c1": 1,
+            "des_c1": "Cost Occupied_BW",
+            "c2": 0,
+            "des_c2": "Cost CPU_usage"
+        },
+        {
+            "source": "B",
+            "capacity": 40,
+            "weight": 2,
+            "target": "A",
+            "cost": 0,
+            "c1": 1,
+            "des_c1": "Cost Occupied_BW",
+            "c2": 0,
+            "des_c2": "Cost CPU_usage"
+        }
+    ]
+}
