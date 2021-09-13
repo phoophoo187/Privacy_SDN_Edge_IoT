@@ -73,7 +73,7 @@ def topology():
     ap5.cmd('ifconfig edge5-eth2 10.0.0.205')
     ap6.cmd('ifconfig edge6-eth2 10.0.0.206')
     gw1.cmd('ifconfig superedge-eth2 10.0.0.207')
-    h1.cmd('ifconfig h1-eth1 10.0.0.102')
+    #h1.cmd('ifconfig h1-eth1 10.0.0.102')
 
     ap1.setIP('192.168.1.1/24', intf="edge1-wlan1")
     ap2.setIP('192.168.1.2/24', intf="edge2-wlan1")
