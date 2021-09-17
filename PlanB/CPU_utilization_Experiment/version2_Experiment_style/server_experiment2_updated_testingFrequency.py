@@ -4,12 +4,16 @@ import csv
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind(('10.0.0.10', 12345))
 sock.listen(5)
-f1 = open('./Experiment2/edge1CPUM35.csv', 'w')
-f2 = open('./Experiment2/edge4CPUM35.csv', 'w')
-f3 = open('./Experiment2/edge5CPUM35.csv', 'w')
+table_header = ['edge_name','unix_timestamp','percentage_cpu_utilisation']
+f1 = open('./Experiment2_updated_testingFrequency/Edge1_CPU/edge1CPUM15.csv', 'w')
+f2 = open('./Experiment2_updated_testingFrequency/Edge4_CPU/edge4CPUM35_15.csv', 'w')
+f3 = open('./Experiment2_updated_testingFrequency/Edge5_CPU/edge5CPUM35.csv', 'w')
 writer1 = csv.writer(f1)
 writer2 = csv.writer(f2)
 writer3 = csv.writer(f3)
+writer1.writerow(table_header)
+writer2.writerow(table_header)
+writer3.writerow(table_header)
 while True:
     conn, addr = sock.accept()
     from_client = ''
