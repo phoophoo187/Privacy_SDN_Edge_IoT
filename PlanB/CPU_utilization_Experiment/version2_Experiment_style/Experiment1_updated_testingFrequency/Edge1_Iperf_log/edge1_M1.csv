@@ -1,0 +1,67 @@
+Interval,,Transfer,,Bitrate,,Total Datagrams
+0.00-1.00,sec,123,KBytes,1.01,Mbits/sec,87
+1.00-2.00,sec,122,KBytes,996,Kbits/sec,86
+2.00-3.00,sec,122,KBytes,996,Kbits/sec,86
+3.00-4.00,sec,123,KBytes,1.01,Mbits/sec,87
+4.00-5.00,sec,122,KBytes,996,Kbits/sec,86
+5.00-6.00,sec,122,KBytes,996,Kbits/sec,86
+6.00-7.00,sec,123,KBytes,1.01,Mbits/sec,87
+7.00-8.00,sec,122,KBytes,996,Kbits/sec,86
+8.00-9.00,sec,122,KBytes,996,Kbits/sec,86
+9.00-10.00,sec,123,KBytes,1.01,Mbits/sec,87
+10.00-11.00,sec,122,KBytes,996,Kbits/sec,86
+11.00-12.00,sec,122,KBytes,996,Kbits/sec,86
+12.00-13.00,sec,123,KBytes,1.01,Mbits/sec,87
+13.00-14.00,sec,122,KBytes,996,Kbits/sec,86
+14.00-15.00,sec,122,KBytes,996,Kbits/sec,86
+15.00-16.00,sec,123,KBytes,1.01,Mbits/sec,87
+16.00-17.00,sec,122,KBytes,996,Kbits/sec,86
+17.00-18.00,sec,122,KBytes,996,Kbits/sec,86
+18.00-19.00,sec,123,KBytes,1.01,Mbits/sec,87
+19.00-20.00,sec,122,KBytes,996,Kbits/sec,86
+20.00-21.00,sec,122,KBytes,996,Kbits/sec,86
+21.00-22.00,sec,123,KBytes,1.01,Mbits/sec,87
+22.00-23.00,sec,122,KBytes,996,Kbits/sec,86
+23.00-24.00,sec,122,KBytes,996,Kbits/sec,86
+24.00-25.00,sec,123,KBytes,1.01,Mbits/sec,87
+25.00-26.00,sec,122,KBytes,996,Kbits/sec,86
+26.00-27.00,sec,122,KBytes,996,Kbits/sec,86
+27.00-28.00,sec,123,KBytes,1.01,Mbits/sec,87
+28.00-29.00,sec,122,KBytes,996,Kbits/sec,86
+29.00-30.00,sec,122,KBytes,996,Kbits/sec,86
+30.00-31.00,sec,123,KBytes,1.01,Mbits/sec,87
+31.00-32.00,sec,122,KBytes,996,Kbits/sec,86
+32.00-33.00,sec,122,KBytes,996,Kbits/sec,86
+33.00-34.00,sec,123,KBytes,1.01,Mbits/sec,87
+34.00-35.00,sec,122,KBytes,996,Kbits/sec,86
+35.00-36.00,sec,122,KBytes,996,Kbits/sec,86
+36.00-37.00,sec,122,KBytes,996,Kbits/sec,86
+37.00-38.00,sec,123,KBytes,1.01,Mbits/sec,87
+38.00-39.00,sec,122,KBytes,996,Kbits/sec,86
+39.00-40.00,sec,122,KBytes,996,Kbits/sec,86
+40.00-41.00,sec,123,KBytes,1.01,Mbits/sec,87
+41.00-42.00,sec,122,KBytes,996,Kbits/sec,86
+42.00-43.00,sec,122,KBytes,996,Kbits/sec,86
+43.00-44.00,sec,123,KBytes,1.01,Mbits/sec,87
+44.00-45.00,sec,122,KBytes,996,Kbits/sec,86
+45.00-46.00,sec,122,KBytes,996,Kbits/sec,86
+46.00-47.00,sec,123,KBytes,1.01,Mbits/sec,87
+47.00-48.00,sec,122,KBytes,996,Kbits/sec,86
+48.00-49.00,sec,122,KBytes,996,Kbits/sec,86
+49.00-50.00,sec,123,KBytes,1.01,Mbits/sec,87
+50.00-51.00,sec,122,KBytes,996,Kbits/sec,86
+51.00-52.00,sec,122,KBytes,996,Kbits/sec,86
+52.00-53.00,sec,123,KBytes,1.01,Mbits/sec,87
+53.00-54.00,sec,122,KBytes,996,Kbits/sec,86
+54.00-55.00,sec,122,KBytes,996,Kbits/sec,86
+55.00-56.00,sec,123,KBytes,1.01,Mbits/sec,87
+56.00-57.00,sec,122,KBytes,996,Kbits/sec,86
+57.00-58.00,sec,122,KBytes,996,Kbits/sec,86
+58.00-59.00,sec,123,KBytes,1.01,Mbits/sec,87
+59.00-60.00,sec,122,KBytes,996,Kbits/sec,86
+- - - - - - -,- -,- - -,- - - -,- -,- - - -,
+Interval,,Transfer,,Bitrate,,Jitter    Lost/Total Datagrams
+0.00-60.00,sec,7.15,MBytes,1,Mbits/sec,0.000 ms  0/5180 (0%)  sender
+0.00-60.01,sec,7.15,MBytes,1000,Kbits/sec,0.566 ms  0/5180 (0%)  receiver
+,,,,,,
+Done.,,,,,,
