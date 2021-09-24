@@ -1,0 +1,5 @@
+edge_name,unix_timestamp,percentage_cpu_utilisation
+edge1, 1632152689.814092, 28.0
+edge1, 1632152692.8264503, 29.0
+edge1, 1632152696.8679867, 30.6
+edge1, 1632152699.9057572, 29.8
