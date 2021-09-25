@@ -33,18 +33,11 @@ of IEEE 802.11.
 
 | Node (interface)| MAC address| IP address |
 | :---         |     :---:      |          ---: |
-| Edge#1 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#1 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#2 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#2 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#3(wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#3 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#4 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#4 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#5 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#5 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#6 (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Edge#6 (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Super-Edge (wlan0)   | xxxxxxxx    | xxx.xxx.xxx    |
-| Super-Edge (wlan1)   | xxxxxxxx    | xxx.xxx.xxx    |
+| Edge#1 (wlan1)   | 00:00:00:00:00:10    | 192.168.1.1    |
+| Edge#2 (wlan1)   | 00:00:00:00:00:20   | 192.168.1.2   |
+| Edge#3 (wlan1)   | 00:00:00:00:00:30 | 192.168.1.3 |
+| Edge#4 (wlan1)   | 00:00:00:00:00:40   | 192.168.1.4    |
+| Edge#5 (wlan1)   | 00:00:00:00:00:50    | 192.168.1.5    |
+| Edge#6 (wlan1)   | 00:00:00:00:00:60    | 192.168.1.6    |
+| Super-Edge (wlan1)   | 00:00:00:00:00:70    | 192.168.1.8    |
 
