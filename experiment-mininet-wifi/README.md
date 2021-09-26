@@ -41,11 +41,11 @@ We recommend creating a parent folder to store the mininet-wifi source code befo
 <br>In this work, we need The Ryu controller https://ryu.readthedocs.io/en/latest/getting_started.html.
 <br> We have tested installing the Ryu from pip directly. We got error about eveltlet.wsgi which is 'cannot import name ALREADY_HANDLED'. So, we install Ryu from the source code instead.
 - **step 13:** $sudo apt-get install gcc python3-dev libffi-dev libssl-dev libxm12-dev libxslt1-dev zlib1g-dev
-<br> At step 13 we follow the instruction on the https://ryu.readthedocs.io/en/latest/getting_started.html. (Fi you found an error `Unable to locate package libxm12-dev`, you have to purge it an reinstall it. with the following commands
--- `sudo apt-get purge -f libxml2-dev`
--- `sudo apt-get clean`
--- `sudo apt-get update`
--- `sudo apt-get install libxml2 libxml2-dev`)
+<br> At step 13 we follow the instruction on the https://ryu.readthedocs.io/en/latest/getting_started.html. (Fi you found an error `Unable to locate package libxm12-dev`, you have to purge it an reinstall it. with the following commands <br/>
+  -`sudo apt-get purge -f libxml2-dev` <br/>
+  - `sudo apt-get clean` <br/>
+  - `sudo apt-get update` <br/>
+  - `sudo apt-get install libxml2 libxml2-dev`) <br/>
 - **step 14:** $git cl% git clone https://github.com/faucetsdn/ryu.git
 - **step 15:** $cd ryu
 - **step 16:** $pip3 install
