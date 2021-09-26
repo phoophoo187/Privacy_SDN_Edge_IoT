@@ -54,7 +54,7 @@ We recommend creating a parent folder to store the mininet-wifi source code befo
 
 ## Runing an Experiment
 To setup the topology for the experiment
-- $sudo python3 topology.py
+- $sudo python3 [topology.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/experiment-mininet-wifi/topology.py)
 <br> After mininet-wifi is run and all nodes are loaded, we will get the *mininet-wifi>* prompt. 
 Run the command below to oper terminal in the h1.
 
