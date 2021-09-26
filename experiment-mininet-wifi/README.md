@@ -61,7 +61,7 @@ Run the command below to oper terminal in the h1.
 ![image](https://user-images.githubusercontent.com/13536277/128671129-d8ef97fa-a7b9-43fd-b8bf-9556459fb992.png)
 
 - **mininet-wifi>** xterm h1 
-<br> the new xterm window of **node:h1** is opened. At the prompt run ryuAtSuperEdge.py
+<br> the new xterm window of **node:h1** is opened. At the prompt run [ryuAtSuperEdge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/experiment-mininet-wifi/ryuAtSuperEdge.py)
 - #python3 ryuAtSuperEdge.py
 
 
