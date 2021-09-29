@@ -41,23 +41,27 @@ We recommend creating a parent folder to store the mininet-wifi source code befo
 <br>In this work, we need The Ryu controller https://ryu.readthedocs.io/en/latest/getting_started.html.
 <br> We have tested installing the Ryu from pip directly. We got error about eveltlet.wsgi which is 'cannot import name ALREADY_HANDLED'. So, we install Ryu from the source code instead.
 - **step 13:** $sudo apt-get install gcc python3-dev libffi-dev libssl-dev libxm12-dev libxslt1-dev zlib1g-dev
-<br> At step 13 we follow the instruction on the https://ryu.readthedocs.io/en/latest/getting_started.html.
-- **step 14:** $git cl% git clone https://github.com/faucetsdn/ryu.git
+<br> At step 13 we follow the instruction on the https://ryu.readthedocs.io/en/latest/getting_started.html. (If you found an error `Unable to locate package libxm12-dev`, you have to purge it an reinstall it. with the following commands. <br/>
+    - `sudo apt-get purge -f libxml2-dev` <br/>
+  - `sudo apt-get clean` <br/>
+  - `sudo apt-get update` <br/>
+  - `sudo apt-get install libxml2 libxml2-dev`) <br/>
+- **step 14:** $git clone https://github.com/faucetsdn/ryu.git
 - **step 15:** $cd ryu
-- **step 16:** $pip3 install
+- **step 16:** $pip3 install .
 - **step 17:** $pip install -r tools/optional-requires   #install extra packages
 <br>#Note make sure pip3 is not too old in order to avoid any installation error.
 
 ## Runing an Experiment
 To setup the topology for the experiment
-- $sudo python3 topology.py
+- $sudo python3 [topology.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/experiment-mininet-wifi/topology.py)
 <br> After mininet-wifi is run and all nodes are loaded, we will get the *mininet-wifi>* prompt. 
 Run the command below to oper terminal in the h1.
 
 ![image](https://user-images.githubusercontent.com/13536277/128671129-d8ef97fa-a7b9-43fd-b8bf-9556459fb992.png)
 
 - **mininet-wifi>** xterm h1 
-<br> the new xterm window of **node:h1** is opened. At the prompt run ryuAtSuperEdge.py
+<br> the new xterm window of **node:h1** is opened. At the prompt run [ryuAtSuperEdge.py](https://github.com/TNatapon/Privacy_SDN_Edge_IoT/blob/main/experiment-mininet-wifi/ryuAtSuperEdge.py)
 - #python3 ryuAtSuperEdge.py
 
 
