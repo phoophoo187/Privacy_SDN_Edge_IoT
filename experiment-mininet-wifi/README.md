@@ -49,7 +49,7 @@ We recommend creating a parent folder to store the mininet-wifi source code befo
 - **step 14:** $git clone https://github.com/faucetsdn/ryu.git
 - **step 15:** $cd ryu
 - **step 16:** $pip3 install .
-- **step 17:** $pip install -r tools/optional-requires   #install extra packages
+- **step 17:** $pip3 install -r tools/optional-requires   #install extra packages
 <br>#Note make sure pip3 is not too old in order to avoid any installation error.
 
 ## Runing an Experiment
