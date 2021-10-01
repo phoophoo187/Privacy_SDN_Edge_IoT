@@ -1,4 +1,4 @@
-In this experiment, we did not activae the ovs-vwsitch. We let the edge 1 send the packets to the edge 2 via iperf2. 
+In this experiment, we did not activate the ovs-vwsitch. Edge 1 sends the packets to Edge 2 via iperf2. 
 
 ![Experiment1](./pic.png)
 
