@@ -7,4 +7,8 @@ One access point shows how to run the simplest Mininet-WiFi scenario, shows how 
 - This simple lab will allow us to demonstrate how to capture wireless control traffic and will demonstrate the way an OpenFlow-enabled access point handles WiFi traffic on the wlan interface.
 
 ### Capturing Wireless control traffic in Mininet-WiFi
+ To view wireless control traffic we must first start Wireshark:
+
+`wifi:~$ sudo wireshark &`
+[wireshark_activate][./]
 
