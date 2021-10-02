@@ -26,4 +26,4 @@ To see the links, nodes, and network connectivity, we can use commands: <br/>
 
 To see the OpenFlow packets, you have to sniff the packets at local loopback interface. <br/>
 ![openflow](./Figure/Tutorial_1/wireshark_loopback.png) <br/>
-![openflow_packet](./Figure/Tutorial_1/openflow_paket.png)
+![openflow_packet](./Figure/Tutorial_1/openflow_packet.png)
