@@ -23,5 +23,4 @@ To see the links, nodes, and network connectivity, we can use commands: <br/>
 - `links`
 - `nodes`
 - `net` <br/>
-The results of these commands are :
-![net](./Figure/Tutorial_1/net.png)
+
