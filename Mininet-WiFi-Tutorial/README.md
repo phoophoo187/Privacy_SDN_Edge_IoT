@@ -24,3 +24,5 @@ To see the links, nodes, and network connectivity, we can use commands: <br/>
 - `nodes`
 - `net` <br/>
 
+To see the OpenFlow packets, you have to sniff the packets at local loopback interface. <br/>
+![openflow](./Figure/Tutorial_1/openflow_packet)
