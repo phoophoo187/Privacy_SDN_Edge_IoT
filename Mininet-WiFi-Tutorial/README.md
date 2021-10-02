@@ -12,6 +12,7 @@ One access point shows how to run the simplest Mininet-WiFi scenario, shows how 
 `$ sudo wireshark &` <br/>
 Activate Mininet-WiFi. It will start with the default network scenario using the command below: <br/>
 `$ sudo mn --wifi` <br/>
-![wireshark_activate](./Activate_mininet-wifi.png)
-We let wireshark caputer `hwsim0` interface.
+![wireshark_activate](./Activate_mininet-wifi.png) <br/>
+
+After we up `hwsim0` interface, we let wireshark caputer `hwsim0` interface. <br/>
 ![hwsim0](./hwsim0.png)
