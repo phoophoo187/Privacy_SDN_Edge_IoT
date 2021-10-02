@@ -10,5 +10,5 @@ One access point shows how to run the simplest Mininet-WiFi scenario, shows how 
  To view wireless control traffic we must first start Wireshark:
 
 `wifi:~$ sudo wireshark &` <br/>
-![wireshark_activate][./Activate_mininet-wifi.png]
+![wireshark_activate](./Activate_mininet-wifi.png)
 
