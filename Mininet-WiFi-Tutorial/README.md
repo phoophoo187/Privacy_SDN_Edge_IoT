@@ -25,7 +25,7 @@ To see the links, nodes, and network connectivity, we can use commands: <br/>
 - `net` <br/>
 
 To see the OpenFlow packets, you have to sniff the packets at local loopback interface, while we ping `sta1` to `sta2`. <br/>
-![ping_station](./Figure/Tutorial_1/ping_two_station.png) <br/>
+![ping_station](./Figure/Tutorial_1/ping_two_stations.png) <br/>
 ![ping_loopback](./Figure/Tutorial_1/ping_loopback.png) <br/>
 ![openflow](./Figure/Tutorial_1/wireshark_loopback.png) <br/>
 ![openflow_packet](./Figure/Tutorial_1/openflow_packet.png)
