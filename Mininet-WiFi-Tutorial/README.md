@@ -28,4 +28,9 @@ To see the OpenFlow packets, you have to sniff the packets at local loopback int
 ![ping_station](./Figure/Tutorial_1/ping_two_stations.png) <br/>
 ![ping_loopback](./Figure/Tutorial_1/ping_loopback.png) <br/>
 ![openflow](./Figure/Tutorial_1/wireshark_loopback.png) <br/>
-![openflow_packet](./Figure/Tutorial_1/openflow_packet.png)
+![openflow_packet](./Figure/Tutorial_1/openflow_packet.png) <br/>
+
+To terminate mininet-wifi, we use command: <br/>
+`$ exit` <br/>
+To clear the setting, we use command: <brr/>
+`$ sudo mn -c` <br/>
