@@ -32,5 +32,5 @@ To see the OpenFlow packets, you have to sniff the packets at local loopback int
 
 To terminate mininet-wifi, we use command: <br/>
 `$ exit` <br/>
-After exit mininet-wifi terminal, to clear the setting, we use command: <brr/>
+After we exit mininet-wifi terminal, to clear the setting, we use command: <brr/>
 `$ sudo mn -c` <br/>
