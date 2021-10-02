@@ -18,3 +18,10 @@ After we up `hwsim0` interface by command <br/>
 `$ sh ifconfig hwsim0 up`, <br/>
 we let wireshark caputer `hwsim0` interface. <br/>
 ![hwsim0](./Figure/Tutorial_1/hwsim0.png) <br/>
+
+To see the links, nodes, and network connectivity, we can use commands: <br/>
+- `links`
+- `nodes`
+- `net` <br/>
+The results of these commands are :
+![net](./Figure/Tutorial_1/net.png)
