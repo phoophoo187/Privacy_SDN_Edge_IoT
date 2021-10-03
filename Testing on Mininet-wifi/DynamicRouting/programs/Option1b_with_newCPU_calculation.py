@@ -13,9 +13,12 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import time
 import os
+from operator import attrgetter
 from prettytable import PrettyTable
 import socket
+import requests
 import datetime
+import numpy as np
 
 e1ip = "192.168.1.1"
 e2ip = "192.168.1.2"
@@ -32,6 +35,7 @@ e3mac = "00:00:00:00:00:30"
 e4mac = "00:00:00:00:00:40"
 e5mac = "00:00:00:00:00:50"
 e6mac = "00:00:00:00:00:60"
+
 
 socket_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 '''
@@ -54,7 +58,7 @@ class node_failure (app_manager.RyuApp):
     def __init__(self, *args, **kwargs):
         super(node_failure, self).__init__(*args, **kwargs)
         self.priority = 180
-        self.hard_timeout = 12
+        self.hard_timeout = 10
         self.switch_table = {}
         self.G = nx.MultiDiGraph()
         self.datapaths = {}
@@ -103,15 +107,66 @@ class node_failure (app_manager.RyuApp):
             'edge5':0,
             'edge6':0            
         }        
+        self.port_x = {
+            'edge1':0,
+            'edge2':0,
+            'edge3':0,
+            'edge4':0,
+            'edge5':0,
+            'edge6':0,
+            'superedge': 0
+        }
         
         self.monitor_thread = hub.spawn(self._monitor)
         self.monitor_client_conn = hub.spawn(self._monitor_client_conn)
-        self.monitor_flow_stats = hub.spawn(self._monitor_flow_stats)
+        self.monitor_port = hub.spawn(self._monitor_port)
         self.interval_time = 10
-        self.flowstats_cnt_time = 0
-        self.flowstats_interval_time = 9    
-        self.flowstats_maximum_throughput = 33 * 10 * pow(10, 6)   
+        self.const1 = 2
+        self.const2 = 2
         
+    def _monitor_port(self):
+        while True:
+            for datapath in self.datapaths.values():                
+                self.send_port_stats_request(datapath)
+            hub.sleep(8)
+    
+    def send_port_stats_request(self, datapath):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+
+        req = parser.OFPPortStatsRequest(datapath, 0, ofproto.OFPP_ANY)
+        datapath.send_msg(req)
+    
+    @set_ev_cls(ofp_event.EventOFPPortStatsReply, MAIN_DISPATCHER)
+    def port_stats_reply_handler(self, ev):
+        body = ev.msg.body
+        deviceName = self.get_device_name(ev.msg.datapath.id)
+        port_stats_table = PrettyTable(['name','port','rx_b','tx_b'])	
+        for stat in sorted(body, key=attrgetter('port_no')):
+            port_stats_table.add_row([ deviceName, stat.port_no, stat.rx_bytes, stat.tx_bytes ])
+            if stat.port_no == 1:
+                self.port_x[deviceName] = self.port_x[deviceName] + stat.rx_bytes + stat.tx_bytes
+        print(port_stats_table)
+        
+    def sigmoid(self, x):
+    
+        ## if x > 0
+        x = x*1e-6 # To convert the unit of x from bps to Mbps
+  
+        z = np.exp(-self.const1*(x-self.const2))
+        sig = 1 / (1 + z)
+
+        return sig
+    
+    def get_device_name(self, datapath_id):
+        if datapath_id == 1: return 'edge1'
+        elif datapath_id == 2: return 'edge2'
+        elif datapath_id == 3: return 'edge3'
+        elif datapath_id == 4: return 'edge4'
+        elif datapath_id == 5: return 'edge5'
+        elif datapath_id == 6: return 'edge6'
+        elif datapath_id == 7: return 'superedge'
+    
     def get_datapath_id(self, edgeName):
         if edgeName == 'edge1': return 1
         elif edgeName == 'edge2': return 2
@@ -156,57 +211,7 @@ class node_failure (app_manager.RyuApp):
         elif ip == e5ip: return 'edge5'
         elif ip == e6ip: return 'edge6'
         elif ip == superEdgeip : return 'superedge'
-        
-    def _monitor_flow_stats(self):
-        while True:
-            if len(self.datapaths.keys()) == 7:                
-                for datapath in self.datapaths.values():
-                    self.send_flow_stats_request(datapath)
-            self.flowstats_cnt_time = self.flowstats_cnt_time + 1
-            hub.sleep(self.flowstats_interval_time)  
     
-    def send_flow_stats_request(self, datapath):
-        ofp = datapath.ofproto
-        ofp_parser = datapath.ofproto_parser
-
-        cookie = cookie_mask = 0
-        match = ofp_parser.OFPMatch(in_port=1)
-        req = ofp_parser.OFPFlowStatsRequest(datapath, 0, ofp.OFPTT_ALL, ofp.OFPP_ANY, 
-                                    ofp.OFPG_ANY, cookie, cookie_mask, match)
-        datapath.send_msg(req)
-    
-    def calculate_byte_count(self, bytecount):
-        return bytecount / (self.flowstats_cnt_time * self.flowstats_maximum_throughput)
-        
-    @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
-    def flow_stats_reply_handler(self, ev):        
-        flow_stats = ev.msg.body                   
-        flow_stats_table = PrettyTable(['deviceName', 'dur_sec', 'dur_nsec', 'packet_cnt', 'byte_cnt', 'priority', 'idle', 'hard', 'flag', 'match', 'instructions'])
-        for item in flow_stats:
-            flow_stats_table.add_row([ev.msg.datapath.id, item.duration_sec, item.duration_nsec, item.packet_count, item.byte_count, item.priority, item.idle_timeout, item.hard_timeout, item.flags, item.match, item.instructions])
-        print(flow_stats_table)
-        for i,_ in enumerate(flow_stats):                            
-            if ('ipv4_src' in _.match) and ('ipv4_dst' in _.match):
-                src_device = self.getDeviceNameFromIPAddress(_.match['ipv4_src'])
-                dest_device = self.getDeviceNameFromIPAddress(_.match['ipv4_dst'])
-                for (u,v) in self.edge_list:
-                    if ((src_device == u) and (dest_device == v)) or ((src_device == v) and (dest_device == u)):
-                        if flow_stats[i].byte_count != 0:
-                            if (u,v) in self.edge_list:
-                                self.concave_edge_list[(u, v)] = self.calculate_byte_count(flow_stats[i].byte_count)
-                            if (v,u) in self.edge_list:
-                                self.concave_edge_list[(v, u)] = self.calculate_byte_count(flow_stats[i].byte_count)
-            elif ('eth_src' in _.match) and ('ipv4_dst' in _.match):
-                src_device = self.getDeviceNameFromMac(_.match['eth_src'])
-                dest_device = self.getDeviceNameFromIPAddress(_.match['ipv4_dst'])
-                for (u,v) in self.edge_list:
-                    if ((src_device == u) and (dest_device == v)) or ((src_device == v) and (dest_device == u)):
-                        if flow_stats[i].byte_count != 0:
-                            if (u,v) in self.edge_list:
-                                self.concave_edge_list[(u, v)] = self.calculate_byte_count(flow_stats[i].byte_count)
-                            if (v,u) in self.edge_list:
-                                self.concave_edge_list[(v, u)] = self.calculate_byte_count(flow_stats[i].byte_count)
-                
     def _monitor_client_conn(self):
         while True:
             m_conn, addr = socket_server.accept()            
@@ -225,26 +230,18 @@ class node_failure (app_manager.RyuApp):
                         formatted_data = data.split('$')
                         self.CPU_list[formatted_data[0]] = formatted_data[2]                        
             m_conn.close()             
-                
-    def checkKey(self, dict, key):      
-        if key in dict.keys():
-            return True
-        else:
-            return False        
-    
+
     def add_multi_link_attributes(self):
         """
         This funtion is to add the multiple link attributes to graph G
                 self.G : graph
                 self.weight_edge_list : link attribute 1
-                self.concave_edge_list : link attribute 2
-                self.CPU_edge_list : link attribute 3        
+                self.CPU_edge_list : link attribute 2        
         """                  
         for (u, v) in self.G.edges():
             # update CPU edge list
-            self.CPU_edge_list[(u, v)] = float(self.CPU_list[u]) / 100
+            self.CPU_edge_list[(u, v)] = float(self.sigmoid(self.port_x[u]))
             self.G.add_edge(u, v, w = self.weight_edge_list[(u,v)], 
-                            c1 = self.concave_edge_list[(u,v)], 
                             c2= self.CPU_edge_list[(u,v)])        
 
     def remove_Edge(self, rm_edge_list):
@@ -266,32 +263,25 @@ class node_failure (app_manager.RyuApp):
         """           
         return sum([self.G[path[i]][path[i+1]][attr] for i in range(len(path)-1)])
 
-    def calculate_path_cost_with_weighted_sum(self, path, attr1, attr2):
+    ## Calculate concave path cost from attr
+    def max_path_cost(self, path, attr):
         """
-        This function is to find the weighted sum based on two concave matrics
-        : c(e) = ac1(e) + bc2(e)
-        a = (1-c2(e)) / (2-c(e)-c2(e))
-        b = (1-c(e)) / (2-c(e)-c2(e)))
+        This function is to find the path cost based on the additive costs
+        : Path_Cost = max{edges in the path}attr[edge]
         Input : G : graph
                 path : path is a list of nodes in the path
-                attr1 : c1 of edges
-                attr2 : c2 of edges
-        output : path_costs
-        """         
-        costs = []       
-        for i in range(len(path) - 1):
-            a = (1- self.G[path[i]][path[i+1]][attr2]) / (2 - self.G[path[i]][path[i+1]][attr1] - self.G[path[i]][path[i+1]][attr2]) 
-            b = (1- self.G[path[i]][path[i+1]][attr1]) / (2 - self.G[path[i]][path[i+1]][attr1] - self.G[path[i]][path[i+1]][attr2]) 
-            costs.append(a * self.G[path[i]][path[i+1]][attr1] + b * self.G[path[i]][path[i+1]][attr2]) 
-        return max(costs)
-        
+                attr : attribute of edges
+        output : path_cost
+        """        
+        return max([self.G[path[i]][path[i+1]][attr] for i in range(len(path)-1)])
+
     def rm_edge_constraint(self,Cons):
         rm_edge_list = []
         for u, v, data in self.G.edges(data=True):
             e = (u,v)
             cost = self.G.get_edge_data(*e)
             #self.logger.info(cost)
-            if cost['c1'] >= Cons:
+            if cost['c2'] >= Cons:
                 rm_edge_list.append(e)
                 #self.logger.info(rm_edge_list)    
         self.remove_Edge(rm_edge_list)
@@ -316,24 +306,25 @@ class node_failure (app_manager.RyuApp):
             return False
         return True
 
-    def Option2_routing(self, S, D, L):
+    def option1b_routing(self, S, D, L):
         """
-        This function is to find the optimal path from S to D with constraint L by combining two concave matrics with weighted sum
+        This function is to find the optimal path from S to D with constraint L 
         Input : G : graph
                 S : Source
                 D : Destination
                 L : constraint
         """
-        if self.has_path(S, D):            
+        if self.has_path(S, D):
+            
             Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')                           
-            Opt_path = Shortest_path
+            Opt_path = Shortest_path            
             while len(Shortest_path) != 0:
-                path_cost = self.additive_path_cost(Shortest_path, 'w') 
-                #self.logger.info('Path cost - %d', path_cost)
+                path_cost = self.additive_path_cost(Shortest_path, 'w')                                 
                 if path_cost <= L:
-                    """go to path cost with weighted sum"""
-                    path_cost_with_weighted_sum  = self.calculate_path_cost_with_weighted_sum(Shortest_path, 'c1', 'c2')
-                    self.G = self.rm_edge_constraint(path_cost_with_weighted_sum) # remove all links where the concave link is greater than PathConcave_cost                    
+                    """go to concave cost"""
+                    PathConcave_cost  = self.max_path_cost(Shortest_path, 'c2')                    
+                    self.G = self.rm_edge_constraint(PathConcave_cost) # remove all links where the concave link is greater than PathConcave_cost
+                
                     Opt_path = Shortest_path
                     if self.has_path(S, D):
                         Shortest_path = nx.dijkstra_path(self.G, S, D, weight='w')
@@ -343,31 +334,36 @@ class node_failure (app_manager.RyuApp):
                     break 
         else:
             self.logger.info('No path from %s to %s', S, D)
+            PathConcave_cost  = 0
             Opt_path = []
         return Opt_path
-    
-    def edge_monitor_routing(self, source, dest, L): 
+
+    def edge_monitor_routing(self, source, dest, L):                                                  
         self.G = nx.DiGraph()                                
         self.G.add_edges_from(self.edge_list)                 
         self.add_multi_link_attributes()  
-        optimal_path = self.Option2_routing(source, dest, L)             
-        return optimal_path
-    
+        optimal_path = self.option1b_routing(source, dest, L)            
+        return optimal_path    
+        
     def _monitor(self):     
         while True:   
             if len(self.datapaths.keys()) == 7:       
                 current_time = time.asctime(time.localtime(time.time()))          
                 L = 6
                 src = 'edge1'
-                dest = 'superedge'                
+                dest = 'superedge'
                 self.G = nx.DiGraph()                                
                 self.G.add_edges_from(self.edge_list)                 
-                self.add_multi_link_attributes()      
+                self.add_multi_link_attributes()                    
                 
                 self.logger.info("%s, Constraint %s", current_time, L)   
-                network_table = PrettyTable(['link', 'weight', 'c1', 'c2'])
+                network_table = PrettyTable(['link', 'weight', 'c2'])
+                
+                for key, value in self.port_x.items():
+                    print(key + ':' +  str(value))
+                
                 for i in range(len(self.edge_list)):
-                    network_table.add_row([self.edge_list[i], self.weight_edge_list[self.edge_list[i]], self.concave_edge_list[self.edge_list[i]], self.CPU_edge_list[self.edge_list[i]]])
+                    network_table.add_row([self.edge_list[i], self.weight_edge_list[self.edge_list[i]], self.CPU_edge_list[self.edge_list[i]]])
                 print(network_table)
                                 
                 routing_table = PrettyTable(['source', 'dest', 'optimal path'])                                                     
@@ -375,7 +371,7 @@ class node_failure (app_manager.RyuApp):
                 routing_table.add_row([src, dest, optimal_path])              
                 self.reroute_path.append(optimal_path)                
                 
-                optimal_path = self.edge_monitor_routing('edge2', dest, L)                  
+                optimal_path = self.edge_monitor_routing('edge2', dest, L)            
                 routing_table.add_row(['edge2', dest, optimal_path])              
                 self.reroute_path.append(optimal_path)
                 
@@ -399,7 +395,7 @@ class node_failure (app_manager.RyuApp):
                                 
                 for datapath in self.datapaths.values():
                     self.send_get_config_request(datapath)
-                                                    
+                                
             hub.sleep(self.interval_time)    
 
     def add_flow(self, datapath, table, priority, match, actions, hard):
@@ -1069,5 +1065,6 @@ class node_failure (app_manager.RyuApp):
                 in_port=1, eth_type=0x0800, ipv4_src=e5ip, ipv4_dst=superEdgeip)
             self.add_flow(datapath, 0, 165, match, [], 0)
 
- 
+
+
 

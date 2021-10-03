@@ -27,7 +27,6 @@ e6ip = "192.168.1.6"
 superEdgeip= "192.168.1.8"
 
 superEdgeMac = "00:00:00:00:00:70"
-# gw2mac = "00:00:00:00:00:80"
 e1mac = "00:00:00:00:00:10"
 e2mac = "00:00:00:00:00:20"
 e3mac = "00:00:00:00:00:30"
@@ -57,7 +56,7 @@ class node_failure (app_manager.RyuApp):
     def __init__(self, *args, **kwargs):
         super(node_failure, self).__init__(*args, **kwargs)
         self.priority = 180
-        self.hard_timeout = 12
+        self.hard_timeout = 10
         self.switch_table = {}
         self.G = nx.MultiDiGraph()
         self.datapaths = {}
@@ -449,6 +448,7 @@ class node_failure (app_manager.RyuApp):
         for route in self.reroute_path:            
             self.write_dynamic_flowrules(datapath, parser, route, index)
             index = index + 1
+
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
     def switch_features_handler(self, ev):
