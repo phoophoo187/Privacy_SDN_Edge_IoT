@@ -9,8 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c9d1060-f864-44e1-a4e9-17213c31f574" name="Default Changelist" comment="update Readme for optimum pruning based routing algorithm">
-      <change afterPath="$PROJECT_DIR$/Mininet-WiFi-Tutorial/mininet-wifi-tutorial-topology.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mininet-WiFi-Tutorial/Figure/Tutorial_2/create_linear_topology.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mininet-WiFi-Tutorial/Figure/Tutorial_2/dump.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mininet-WiFi-Tutorial/Figure/Tutorial_2/net.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mininet-WiFi-Tutorial/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Mininet-WiFi-Tutorial/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +48,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Mininet-WiFi-Tutorial" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Mininet-WiFi-Tutorial/Figure" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Test_bashScript">
